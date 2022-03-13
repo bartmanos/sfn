@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (
+from core.models import (
     Goods,
     Needs,
     Organization,
@@ -7,23 +7,64 @@ from .models import (
 )
 
 
-class GoodsAdmin(admin.ModelAdmin):
-    pass
+class BaseModelAdmin(admin.ModelAdmin):
+    def save_model(self, request, obj, form, change):
+        if not obj.id:
+            obj.created_by = request.user
+        super().save_model(request, obj, form, change)
 
 
-class NeedsAdmin(admin.ModelAdmin):
-    pass
+@admin.register(Goods)
+class GoodsAdmin(BaseModelAdmin):
+    fields = (
+        "name",
+        "description",
+        "link"
+    )
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
 
 
-class OrganizationAdmin(admin.ModelAdmin):
-    pass
+@admin.register(Needs)
+class NeedsAdmin(BaseModelAdmin):
+    fields = (
+        "good",
+        "quantity",
+        "unit",
+        "due_time",
+        "poi",
+        "status",
+    )
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
 
 
-class PoiAdmin(admin.ModelAdmin):
-    pass
+@admin.register(Organization)
+class OrganizationAdmin(BaseModelAdmin):
+    fields = (
+        "name",
+        "description",
+        "contact",
+    )
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
 
 
-admin.site.register(Goods, GoodsAdmin)
-admin.site.register(Needs, NeedsAdmin)
-admin.site.register(Organization, OrganizationAdmin)
-admin.site.register(Poi, PoiAdmin)
+@admin.register(Poi)
+class PoiAdmin(BaseModelAdmin):
+    fields = (
+        "name",
+        "description",
+        "contact",
+        "organization",
+    )
+    readonly_fields = (
+        "created_at",
+        "updated_at",
+    )
