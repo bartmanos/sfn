@@ -1,9 +1,11 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 from core.models import (
     Goods,
     Needs,
     Organization,
     Poi,
+    User,
 )
 
 
@@ -98,4 +100,11 @@ class PoiAdmin(BaseModelAdmin):
     search_fields = [
         "good__name",
         "good__description"
+    ]
+
+
+@admin.register(User)
+class CustomUserAdmin(UserAdmin):
+    search_fields = [
+        "description",
     ]

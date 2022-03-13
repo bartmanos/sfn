@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
 
@@ -19,6 +20,11 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class User(AbstractUser):
+    description = models.TextField(_("User.description"), blank=True)
+    contact = models.TextField(_("User.contact"))
 
 
 class Organization(BaseModel):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-13 21:18+0000\n"
+"POT-Creation-Date: 2022-03-13 22:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,125 +20,151 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: core/models.py:9
+#: core/models.py:10
 msgid "BaseModel.created_at"
-msgstr ""
+msgstr "Data dodania"
 
-#: core/models.py:14
+#: core/models.py:15
 msgid "BaseModel.created_by"
-msgstr ""
+msgstr "Dodane przez"
 
-#: core/models.py:17
+#: core/models.py:18
 msgid "BaseModel.updated_at"
-msgstr ""
-
-#: core/models.py:25
-msgid "Organization.name"
-msgstr "Organizacja"
+msgstr "Data modyfikacji"
 
 #: core/models.py:26
-msgid "Organization.description"
+#, fuzzy
+#| msgid "Goods.description"
+msgid "User.description"
 msgstr "Opis"
 
 #: core/models.py:27
-msgid "Organization.contact"
-msgstr "Kontant"
+#, fuzzy
+#| msgid "Poi.contact"
+msgid "User.contact"
+msgstr "Kontakt"
 
-#: core/models.py:30
+#: core/models.py:31
+msgid "Organization.name"
+msgstr "Organizacja"
+
+#: core/models.py:32
+msgid "Organization.description"
+msgstr "Opis"
+
+#: core/models.py:33
+msgid "Organization.contact"
+msgstr "Kontakt"
+
+#: core/models.py:36
 #, fuzzy
 #| msgid "Poi.organization"
 msgid "Organization"
 msgstr "Organizacja"
 
-#: core/models.py:31
+#: core/models.py:37
 #, fuzzy
 #| msgid "Poi.organization"
 msgid "Organizations"
 msgstr "Organizacje"
 
-#: core/models.py:35
+#: core/models.py:44
 msgid "Poi.name"
 msgstr "Nazwa"
 
-#: core/models.py:36
+#: core/models.py:45
 msgid "Poi.description"
 msgstr "Opis"
 
-#: core/models.py:37
+#: core/models.py:46
 msgid "Poi.contact"
 msgstr "Kontakt"
 
-#: core/models.py:39
+#: core/models.py:48
 msgid "Poi.organization"
 msgstr "Organizacja"
 
-#: core/models.py:44
+#: core/models.py:52
+#, fuzzy
+#| msgid "Polish"
+msgid "Poi"
+msgstr "POI"
+
+#: core/models.py:53
+msgid "Pois"
+msgstr "POI"
+
+#: core/models.py:60
 msgid "Goods.name"
 msgstr "Nazwa"
 
-#: core/models.py:45
+#: core/models.py:61
 msgid "Goods.description"
 msgstr "Opis"
 
-#: core/models.py:46
+#: core/models.py:62
 msgid "Goods.link"
 msgstr "URL"
 
-#: core/models.py:51
+#: core/models.py:65 core/models.py:66
+#, fuzzy
+#| msgid "Goods.name"
+msgid "Goods"
+msgstr "Nazwa"
+
+#: core/models.py:74
 msgid "Needs.Units.kg"
 msgstr "kg"
 
-#: core/models.py:52
+#: core/models.py:75
 msgid "Needs.Units.l"
 msgstr "l"
 
-#: core/models.py:53
+#: core/models.py:76
 msgid "Needs.Units.pcs"
 msgstr "szt"
 
-#: core/models.py:56
+#: core/models.py:79
 msgid "Needs.Status.active"
 msgstr ""
 
-#: core/models.py:57
+#: core/models.py:80
 msgid "Needs.Status.disabled"
 msgstr ""
 
-#: core/models.py:60
+#: core/models.py:83
 msgid "Needs.good"
 msgstr "Dobro"
 
-#: core/models.py:62
+#: core/models.py:85
 msgid "Needs.quantity"
 msgstr "Ilość"
 
-#: core/models.py:63
+#: core/models.py:86
 msgid "Needs.unit"
 msgstr "Jednostka"
 
-#: core/models.py:64
+#: core/models.py:87
 msgid "Needs.due_time"
 msgstr "Na kiedy"
 
-#: core/models.py:65
+#: core/models.py:88
 msgid "Needs.poi"
 msgstr "POI"
 
-#: core/models.py:66
+#: core/models.py:89
 msgid "Needs.status"
 msgstr "Status"
+
+#: core/models.py:92 core/models.py:93
+#, fuzzy
+#| msgid "Needs.poi"
+msgid "Needs"
+msgstr "POI"
 
 #: sfn/settings.py:118
 msgid "Polish"
 msgstr "Polski"
-
-#: sfn/settings.py:119
-msgid "Ukrainian"
-msgstr "Ukraiński"
-
-#: sfn/settings.py:120
-msgid "English"
-msgstr "Angielski"
 
 #: templates/admin/login.html:23
 msgid "Please correct the error below."
@@ -162,3 +188,9 @@ msgstr ""
 #: templates/admin/login.html:63
 msgid "Log in"
 msgstr "Zaloguj się"
+
+#~ msgid "Ukrainian"
+#~ msgstr "Ukraiński"
+
+#~ msgid "English"
+#~ msgstr "Angielski"
