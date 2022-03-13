@@ -19,6 +19,27 @@ class BaseModelAdmin(admin.ModelAdmin):
             obj.created_by = request.user
         super().save_model(request, obj, form, change)
 
+    def has_change_permission(self, request, obj=None) -> bool:
+        if super().has_change_permission(request, obj):
+            return True
+        else:
+            return obj and obj.created_by == request.user
+
+    def has_view_permission(self, request, obj=None) -> bool:
+        if super().has_view_permission(request, obj):
+            return True
+        elif not obj:
+            # editing of objects of this type is permitted in general
+            return True
+        else:
+            return obj.created_by == request.user
+
+    def has_module_permission(self, request) -> bool:
+        if super().has_module_permission(request):
+            return True
+        else:
+            return True
+
 
 @admin.register(Goods)
 class GoodsAdmin(BaseModelAdmin):
