@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-13 19:34+0000\n"
+"POT-Creation-Date: 2022-03-13 20:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,8 +29,88 @@ msgstr ""
 msgid "BaseModel.updated_at"
 msgstr ""
 
-#: core/models.py:22
-msgid "BaseModel.updated_by"
+#: core/models.py:25
+msgid "Organization.name"
+msgstr ""
+
+#: core/models.py:26
+msgid "Organization.description"
+msgstr ""
+
+#: core/models.py:27
+msgid "Organization.contact"
+msgstr ""
+
+#: core/models.py:31
+msgid "Poi.name"
+msgstr ""
+
+#: core/models.py:32
+msgid "Poi.description"
+msgstr ""
+
+#: core/models.py:33
+msgid "Poi.contact"
+msgstr ""
+
+#: core/models.py:35
+msgid "Poi.organization"
+msgstr ""
+
+#: core/models.py:40
+msgid "Goods.name"
+msgstr ""
+
+#: core/models.py:41
+msgid "Goods.description"
+msgstr ""
+
+#: core/models.py:42
+msgid "Goods.link"
+msgstr ""
+
+#: core/models.py:47
+msgid "Needs.Units.kg"
+msgstr ""
+
+#: core/models.py:48
+msgid "Needs.Units.l"
+msgstr ""
+
+#: core/models.py:49
+msgid "Needs.Units.pcs"
+msgstr ""
+
+#: core/models.py:52
+msgid "Needs.Status.active"
+msgstr ""
+
+#: core/models.py:53
+msgid "Needs.Status.disabled"
+msgstr ""
+
+#: core/models.py:56
+msgid "Needs.good"
+msgstr ""
+
+#: core/models.py:58
+msgid "Needs.quantity"
+msgstr ""
+
+#: core/models.py:59
+msgid "Needs.unit"
+msgstr ""
+
+#: core/models.py:60
+msgid "Needs.due_time"
+msgstr ""
+
+#: core/models.py:61
+msgid "Needs.poi"
+msgstr ""
+
+#: core/models.py:62
+msgid "Needs.status"
 msgstr ""
 
 #: sfn/settings.py:117
