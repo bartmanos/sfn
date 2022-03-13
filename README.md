@@ -133,6 +133,24 @@ Infra details
 - fake needs requests
 
 
+# Developer guide
 
+## Database
 
+    $ cat ~/.pg_service.conf
+    [sfn]
+    host=localhost
+    user=postgres
+    dbname=sfn
+    port=5432
 
+    $ cat src/.pgpass
+    localhost:5432:sfn:postgres:sfn
+
+    $ docker run --name sfn-pg -e POSTGRES_PASSWORD=sfn -d -p 5432:5432 postgres
+    $ docker exec -it sfn-pg bash
+    $ psql -U postgres
+    $ CREATE DATABASE sfn;
+
+    $ cd src
+    $ ./manage.py migrate
