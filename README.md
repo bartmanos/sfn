@@ -154,3 +154,7 @@ Infra details
 
     $ cd src
     $ ./manage.py migrate
+
+## Translations
+
+    $ ./manage.py makemessages -a
