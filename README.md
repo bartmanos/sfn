@@ -114,8 +114,23 @@ Need:
 # Infrastructure:
 Infra is on me, I can use AWS infra if needed for the start, depends on needs (nomen omen:) i will pay for it or find other help.
 So we can user any aws resource if needed.
-
 For now I am doing doing it as voluunter in my free time, with my own money.
+Infra details
+- SSL usage is obvious (https://, db conections)
+- secure env with AWS is also obvious
+- Personal data:
+-- org: rather public
+-- single person: private untill set by him/her to be public (like phone number), maybe limited to view only by its org
+-- poi: rather public, maybe limited to view by org
+
+
+
+# Risks
+- even though concept is based on my personal observations and some practice and my friend's, it can happen to be useless if users will not be using it from plenty of reasons. We need to take into consideretion that most of users are just random voluunters wanting to help and it cab be too much for them. Thats why is should sa simple as possible but brings some comfort and order.
+- criminal user cases
+- spamming with requests
+- fake needs requests
+
 
 
 
