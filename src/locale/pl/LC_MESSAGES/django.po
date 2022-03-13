@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-13 20:38+0000\n"
+"POT-Creation-Date: 2022-03-13 21:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,107 +34,119 @@ msgstr ""
 
 #: core/models.py:25
 msgid "Organization.name"
-msgstr ""
+msgstr "Organizacja"
 
 #: core/models.py:26
 msgid "Organization.description"
-msgstr ""
+msgstr "Opis"
 
 #: core/models.py:27
 msgid "Organization.contact"
-msgstr ""
+msgstr "Kontant"
+
+#: core/models.py:30
+#, fuzzy
+#| msgid "Poi.organization"
+msgid "Organization"
+msgstr "Organizacja"
 
 #: core/models.py:31
-msgid "Poi.name"
-msgstr ""
-
-#: core/models.py:32
-msgid "Poi.description"
-msgstr ""
-
-#: core/models.py:33
-msgid "Poi.contact"
-msgstr ""
+#, fuzzy
+#| msgid "Poi.organization"
+msgid "Organizations"
+msgstr "Organizacje"
 
 #: core/models.py:35
+msgid "Poi.name"
+msgstr "Nazwa"
+
+#: core/models.py:36
+msgid "Poi.description"
+msgstr "Opis"
+
+#: core/models.py:37
+msgid "Poi.contact"
+msgstr "Kontakt"
+
+#: core/models.py:39
 msgid "Poi.organization"
-msgstr ""
+msgstr "Organizacja"
 
-#: core/models.py:40
+#: core/models.py:44
 msgid "Goods.name"
-msgstr ""
+msgstr "Nazwa"
 
-#: core/models.py:41
+#: core/models.py:45
 msgid "Goods.description"
-msgstr ""
+msgstr "Opis"
 
-#: core/models.py:42
+#: core/models.py:46
 msgid "Goods.link"
-msgstr ""
+msgstr "URL"
 
-#: core/models.py:47
+#: core/models.py:51
 msgid "Needs.Units.kg"
-msgstr ""
-
-#: core/models.py:48
-msgid "Needs.Units.l"
-msgstr ""
-
-#: core/models.py:49
-msgid "Needs.Units.pcs"
-msgstr ""
+msgstr "kg"
 
 #: core/models.py:52
+msgid "Needs.Units.l"
+msgstr "l"
+
+#: core/models.py:53
+msgid "Needs.Units.pcs"
+msgstr "szt"
+
+#: core/models.py:56
 msgid "Needs.Status.active"
 msgstr ""
 
-#: core/models.py:53
+#: core/models.py:57
 msgid "Needs.Status.disabled"
 msgstr ""
 
-#: core/models.py:56
-msgid "Needs.good"
-msgstr ""
-
-#: core/models.py:58
-msgid "Needs.quantity"
-msgstr ""
-
-#: core/models.py:59
-msgid "Needs.unit"
-msgstr ""
-
 #: core/models.py:60
-msgid "Needs.due_time"
-msgstr ""
-
-#: core/models.py:61
-msgid "Needs.poi"
-msgstr ""
+msgid "Needs.good"
+msgstr "Dobro"
 
 #: core/models.py:62
-msgid "Needs.status"
-msgstr ""
+msgid "Needs.quantity"
+msgstr "Ilość"
 
-#: sfn/settings.py:117
-msgid "Polish"
-msgstr ""
+#: core/models.py:63
+msgid "Needs.unit"
+msgstr "Jednostka"
+
+#: core/models.py:64
+msgid "Needs.due_time"
+msgstr "Na kiedy"
+
+#: core/models.py:65
+msgid "Needs.poi"
+msgstr "POI"
+
+#: core/models.py:66
+msgid "Needs.status"
+msgstr "Status"
 
 #: sfn/settings.py:118
-msgid "Ukrainian"
-msgstr ""
+msgid "Polish"
+msgstr "Polski"
 
 #: sfn/settings.py:119
+msgid "Ukrainian"
+msgstr "Ukraiński"
+
+#: sfn/settings.py:120
 msgid "English"
-msgstr ""
+msgstr "Angielski"
 
 #: templates/admin/login.html:23
 msgid "Please correct the error below."
-msgstr ""
+msgstr "Proszę poprawić błąd poniżej"
 
 #: templates/admin/login.html:23
 msgid "Please correct the errors below."
-msgstr ""
+msgstr "Proszę poprawić błędy poniżej"
 
 #: templates/admin/login.html:39
 #, python-format
@@ -149,4 +161,4 @@ msgstr ""
 
 #: templates/admin/login.html:63
 msgid "Log in"
-msgstr ""
+msgstr "Zaloguj się"

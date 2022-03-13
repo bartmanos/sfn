@@ -26,6 +26,10 @@ class Organization(BaseModel):
     description = models.TextField(_("Organization.description"))
     contact = models.TextField(_("Organization.contact"))
 
+    class Meta:
+        verbose_name = _('Organization')
+        verbose_name_plural = _('Organizations')
+
 
 class Poi(BaseModel):
     name = models.TextField(_("Poi.name"))
