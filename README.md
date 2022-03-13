@@ -146,6 +146,7 @@ Infra details
 
     $ cat src/.pgpass
     localhost:5432:sfn:postgres:sfn
+    $ chmod 0600 src/.pgpass
 
     $ docker run --name sfn-pg -e POSTGRES_PASSWORD=sfn -d -p 5432:5432 postgres
     $ docker exec -it sfn-pg bash
