@@ -59,7 +59,7 @@ Features:
 
 
 # Database
-Organization:
+## Organization:
 Entity having poi and other organizations in his hands
 - id
 - name
@@ -67,7 +67,7 @@ Entity having poi and other organizations in his hands
 - contact
 - facebook id
 
-User:
+## User:
 Human with a name and contact, working with SFN initiative
 - name
 - description
@@ -75,7 +75,7 @@ Human with a name and contact, working with SFN initiative
 - dates created, updated
 
 
-Poi:
+## Poi:
 Place with some resource or service (for example, a place with boxem full od water near train station, it hase needs, it hase some current status)
 - id
 - name 
@@ -89,7 +89,7 @@ Place with some resource or service (for example, a place with boxem full od wat
 
 
 
-Product:
+## Product:
 Just some product or services that can be needed by someone ro somewhere
 - name
 - description
@@ -98,7 +98,7 @@ Just some product or services that can be needed by someone ro somewhere
 - created by
 
 
-Need:
+## Need:
 - product.name
 - volume needed (litres, kg, pcs etc)
 - how much time need is valid (eg, i need this by tmrv, because in a 5 days everyone will be dead already etc, or, i will need it on friday, not now)
@@ -118,10 +118,10 @@ For now I am doing doing it as voluunter in my free time, with my own money.
 Infra details
 - SSL usage is obvious (https://, db conections)
 - secure env with AWS is also obvious
-- Personal data:
--- org: rather public
--- single person: private untill set by him/her to be public (like phone number), maybe limited to view only by its org
--- poi: rather public, maybe limited to view by org
+## Personal data:
+- org: rather public
+- single person: private untill set by him/her to be public (like phone number), maybe limited to view only by its org
+- poi: rather public, maybe limited to view by org
 
 
 
