@@ -126,7 +126,7 @@ Infra details
 
 
 # Risks
-- even though concept is based on my personal observations and some practice and my friend's, it can happen to be useless if users will not be using it from plenty of reasons. We need to take into consideretion that most of users are just random voluunters wanting to help and it cab be too much for them. Thats why is should sa simple as possible but brings some comfort and order.
+- even though concept is based on my personal observations, some practice and my friend's, it can happen to be useless if users will not be using it for plenty of reasons. We need to take into consideration that most of users are just random voluunters wanting to help and it can be too much for them. Thats why is should sa simple as possible but brings some comfort and order.
 - criminal user cases
 - spamming with requests
 - fake needs requests
