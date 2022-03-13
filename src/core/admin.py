@@ -8,6 +8,12 @@ from core.models import (
 
 
 class BaseModelAdmin(admin.ModelAdmin):
+    readonly_fields = [
+        "created_at",
+        "updated_at",
+    ]
+    fields = readonly_fields
+
     def save_model(self, request, obj, form, change):
         if not obj.id:
             obj.created_by = request.user
@@ -16,55 +22,39 @@ class BaseModelAdmin(admin.ModelAdmin):
 
 @admin.register(Goods)
 class GoodsAdmin(BaseModelAdmin):
-    fields = (
+    fields = [
         "name",
         "description",
         "link"
-    )
-    readonly_fields = (
-        "created_at",
-        "updated_at",
-    )
+    ] + BaseModelAdmin.fields
 
 
 @admin.register(Needs)
 class NeedsAdmin(BaseModelAdmin):
-    fields = (
+    fields = [
         "good",
         "quantity",
         "unit",
         "due_time",
         "poi",
         "status",
-    )
-    readonly_fields = (
-        "created_at",
-        "updated_at",
-    )
+    ] + BaseModelAdmin.fields
 
 
 @admin.register(Organization)
 class OrganizationAdmin(BaseModelAdmin):
-    fields = (
+    fields = [
         "name",
         "description",
         "contact",
-    )
-    readonly_fields = (
-        "created_at",
-        "updated_at",
-    )
+    ] + BaseModelAdmin.fields
 
 
 @admin.register(Poi)
 class PoiAdmin(BaseModelAdmin):
-    fields = (
+    fields = [
         "name",
         "description",
         "contact",
         "organization",
-    )
-    readonly_fields = (
-        "created_at",
-        "updated_at",
-    )
+    ] + BaseModelAdmin.fields

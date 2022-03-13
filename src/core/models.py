@@ -30,6 +30,9 @@ class Organization(BaseModel):
         verbose_name = _('Organization')
         verbose_name_plural = _('Organizations')
 
+    def __str__(self):
+        return self.name
+
 
 class Poi(BaseModel):
     name = models.TextField(_("Poi.name"))
@@ -39,11 +42,25 @@ class Poi(BaseModel):
         Organization, on_delete=models.PROTECT, verbose_name=_("Poi.organization")
     )
 
+    class Meta:
+        verbose_name = _('Poi')
+        verbose_name_plural = _('Pois')
+
+    def __str__(self):
+        return self.name
+
 
 class Goods(BaseModel):
     name = models.TextField(_("Goods.name"))
     description = models.TextField(_("Goods.description"), blank=True)
     link = models.TextField(_("Goods.link"), blank=True)
+
+    class Meta:
+        verbose_name = _('Goods')
+        verbose_name_plural = _('Goods')
+
+    def __str__(self):
+        return self.name
 
 
 class Needs(BaseModel):
@@ -64,3 +81,10 @@ class Needs(BaseModel):
     due_time = models.DateTimeField(_("Needs.due_time"))
     poi = models.ForeignKey(Poi, on_delete=models.PROTECT, verbose_name=_("Needs.poi"))
     status = models.CharField(_("Needs.status"), choices=Status.choices, max_length=32)
+
+    class Meta:
+        verbose_name = _('Needs')
+        verbose_name_plural = _('Needs')
+
+    def __str__(self):
+        return f"{self.good.name} - {self.quantity} {self.unit} - {_('Needs.due_time')}: {self.due_time}"
