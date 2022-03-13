@@ -28,6 +28,11 @@ class GoodsAdmin(BaseModelAdmin):
         "link"
     ] + BaseModelAdmin.fields
 
+    search_fields = [
+        "name",
+        "description",
+    ]
+
 
 @admin.register(Needs)
 class NeedsAdmin(BaseModelAdmin):
@@ -40,6 +45,11 @@ class NeedsAdmin(BaseModelAdmin):
         "status",
     ] + BaseModelAdmin.fields
 
+    search_fields = [
+        "good__name",
+        "good__description"
+    ]
+
 
 @admin.register(Organization)
 class OrganizationAdmin(BaseModelAdmin):
@@ -48,6 +58,11 @@ class OrganizationAdmin(BaseModelAdmin):
         "description",
         "contact",
     ] + BaseModelAdmin.fields
+
+    search_fields = [
+        "good__name",
+        "good__description"
+    ]
 
 
 @admin.register(Poi)
@@ -58,3 +73,8 @@ class PoiAdmin(BaseModelAdmin):
         "contact",
         "organization",
     ] + BaseModelAdmin.fields
+
+    search_fields = [
+        "good__name",
+        "good__description"
+    ]
