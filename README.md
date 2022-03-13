@@ -56,6 +56,7 @@ Features:
 - user/poi can share its needs on facebook
 - need can can be sent on facebook (just one position on facebook if poi or org)
 - should have support for may languages (polish, ukr, english, others)
+- have to be client platform aware (pc, tablets, phones) and change layout accordingly
 
 
 # Database
