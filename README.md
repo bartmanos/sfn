@@ -1,7 +1,3 @@
-# sfn
-Helping in coordination of needs/product flow during UKR humanitarian help in Poland
-
-
 # SFN: Support for Needs
 
 It is a platform based on web application with pc, tablets, phone as a client that is helping to organize and coordinate managing needs between points of interests [poi] (single places, warehauses, volunteers). It's main goal is to shorten time to share needs and to better control needs validation. Sharing info by one click on main page or facebook (or any other media) additionally relieves the load of a volunteer or any person working in the process. Also information is better standarized so other parties have simpler task to answer specific need.
