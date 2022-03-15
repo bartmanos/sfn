@@ -4,15 +4,19 @@ Helping in coordination of needs/product flow during UKR humanitarian help in Po
 
 # SFN: Support for Needs
 
-It is a platform based on web application with pc, tablets, phone as a client that is helping to organize and coordinated managing needs beetwen points of interests (single places, warehauses, volunteers). It's main responsibility is to shorten time to share needs and to better control needs validation. Sharing info by one click on main page or facebook (or any other media) additionally relieves the load of a volunteer or any person working in the process. Also information is better standarized so other parties have simpler task to answer specific need.
+It is a platform based on web application with pc, tablets, phone as a client that is helping to organize and coordinate managing needs between points of interests [poi] (single places, warehauses, volunteers). It's main goal is to shorten time to share needs and to better control needs validation. Sharing info by one click on main page or facebook (or any other media) additionally relieves the load of a volunteer or any person working in the process. Also information is better standarized so other parties have simpler task to answer specific need.
 
 
-
-Vocabulary:
+## Vocabulary:
 product: any resource: water, sandwich, paper, doctor, injection, psyche help, etc
-need: need a product: i need water here (sent mi some water please) -> send me 10 botles of water
+
+need: need a product: i need water here (send me some water please) -> send me 10 botles of water
 status of a need: need (now), not needed anymore (just arrived or smth), in delivery (someone clicked that it is in delivery)
+
 user: human who is working in poi/org doing something, can be contacted etc
+
+poi: point of interest: a place with some product ready to be taken by someone, has some needs, has a user managing, can be in organization
+
 org: object collecting other object (poi, users, other org) - it is mainly for grouping needs in one object on every level
 
 
@@ -109,12 +113,9 @@ Just some product or services that can be needed by someone ro somewhere
 - poi.id
 - status: active, disabled
 
-
-
-
 # Infrastructure:
-Infra is on me, I can use AWS infra if needed for the start, depends on needs (nomen omen:) i will pay for it or find other help.
-So we can user any aws resource if needed.
+Infra is on me, I can use AWS infra if needed for the start, depends on needs (nomen omen:), I will pay for it or find other help.
+We can use any aws resource if needed.
 For now I am doing doing it as voluunter in my free time, with my own money.
 Infra details
 - SSL usage is obvious (https://, db conections)
@@ -131,6 +132,7 @@ Infra details
 - criminal user cases
 - spamming with requests
 - fake needs requests
+- fake users, orgs
 
 
 # Developer guide
