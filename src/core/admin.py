@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import Permission
 from core.models import (
     Goods,
     Needs,
@@ -49,7 +50,8 @@ class GoodsAdmin(BaseModelAdmin):
     fields = [
         "name",
         "description",
-        "link"
+        "link",
+        "poi",
     ] + BaseModelAdmin.fields
 
     search_fields = [
@@ -57,23 +59,29 @@ class GoodsAdmin(BaseModelAdmin):
         "description",
     ]
 
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        # Dropdown shows only POIs in which user has active membership
+        # with high enough permissions to add goods
+        if db_field.name == 'poi':
+            memberships = PoiMembership.objects.filter(member=request.user, is_active=True).all()
+            pois = []
+            for membership in memberships:
+                for perm in membership.group.permissions.all():
+                    if perm.codename == 'add_goods':
+                        pois.append(membership.poi.id)
+
+            kwargs["queryset"] = Poi.objects.filter(id__in=pois)
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
     def has_add_permission(self, request) -> bool:
         membership = request.user.member.all()[:]
-        print(membership)
         if membership:
-            permissions = membership[0].group.permissions.all()
-            print(permissions)
-
-        print('===')
-        return True
-
-    # def has_change_permission(self, request, obj=None) -> bool:
-    #     if super().has_change_permission(request, obj):
-    #         return True
-    #     elif not obj:
-    #         return True
-    #     else:
-    #         return obj.created_by == request.user
+            try:
+                permission = membership[0].group.permissions.get(codename='add_goods')
+            except Permission.DoesNotExist:
+                return False
+            else:
+                return True
 
 
 @admin.register(Needs)
@@ -91,6 +99,31 @@ class NeedsAdmin(BaseModelAdmin):
         "good__name",
         "good__description"
     ]
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        # Dropdown shows only POIs in which user has active membership
+        # with high enough permissions to add needs
+        if db_field.name == 'poi':
+            memberships = PoiMembership.objects.filter(member=request.user, is_active=True).all()
+            pois = []
+            for membership in memberships:
+                for perm in membership.group.permissions.all():
+                    if perm.codename == 'add_goods':
+                        pois.append(membership.poi.id)
+
+            kwargs["queryset"] = Poi.objects.filter(id__in=pois)
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+
+    def has_add_permission(self, request) -> bool:
+        membership = request.user.member.all()[:]
+        if membership:
+            try:
+                permission = membership[0].group.permissions.get(codename='add_needs')
+            except Permission.DoesNotExist:
+                return False
+            else:
+                return True
 
 
 # @admin.register(Organization)
