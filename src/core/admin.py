@@ -5,6 +5,7 @@ from core.models import (
     Needs,
     Organization,
     Poi,
+    PoiMembership,
     User,
 )
 
@@ -56,6 +57,24 @@ class GoodsAdmin(BaseModelAdmin):
         "description",
     ]
 
+    def has_add_permission(self, request) -> bool:
+        membership = request.user.member.all()[:]
+        print(membership)
+        if membership:
+            permissions = membership[0].group.permissions.all()
+            print(permissions)
+
+        print('===')
+        return True
+
+    # def has_change_permission(self, request, obj=None) -> bool:
+    #     if super().has_change_permission(request, obj):
+    #         return True
+    #     elif not obj:
+    #         return True
+    #     else:
+    #         return obj.created_by == request.user
+
 
 @admin.register(Needs)
 class NeedsAdmin(BaseModelAdmin):
@@ -74,18 +93,18 @@ class NeedsAdmin(BaseModelAdmin):
     ]
 
 
-@admin.register(Organization)
-class OrganizationAdmin(BaseModelAdmin):
-    fields = [
-        "name",
-        "description",
-        "contact",
-    ] + BaseModelAdmin.fields
-
-    search_fields = [
-        "good__name",
-        "good__description"
-    ]
+# @admin.register(Organization)
+# class OrganizationAdmin(BaseModelAdmin):
+#     fields = [
+#         "name",
+#         "description",
+#         "contact",
+#     ] + BaseModelAdmin.fields
+#
+#     search_fields = [
+#         "good__name",
+#         "good__description"
+#     ]
 
 
 @admin.register(Poi)
@@ -94,7 +113,7 @@ class PoiAdmin(BaseModelAdmin):
         "name",
         "description",
         "contact",
-        "organization",
+        # "organization",
     ] + BaseModelAdmin.fields
 
     search_fields = [
@@ -108,3 +127,13 @@ class CustomUserAdmin(UserAdmin):
     search_fields = [
         "description",
     ]
+
+
+@admin.register(PoiMembership)
+class PoiMembershipAdmin(BaseModelAdmin):
+    fields = [
+         "member",
+         "poi",
+         "group",
+         "is_active",
+     ] + BaseModelAdmin.fields
