@@ -132,6 +132,7 @@ class Needs(BaseModel):
     class Status(models.TextChoices):
         ACTIVE = _("Needs.Status.active")
         DISABLED = _("Needs.Status.disabled")
+        FULFILLED = _("Needs.Status.fulfilled")
 
     good = models.ForeignKey(
         Goods, on_delete=models.PROTECT, verbose_name=_("Needs.good")
@@ -148,3 +149,27 @@ class Needs(BaseModel):
 
     def __str__(self):
         return f"{self.good.name} - {self.quantity} {self.unit} - {_('Needs.due_time')}: {self.due_time}"
+
+
+class Shipments(BaseModel):
+    class Status(models.TextChoices):
+        TO_DO = _('Shipments.Status.to_do')
+        IN_PROGRESS = _('Shipments.Status.in_progress')
+        DONE = _('Shipments.Status.done')
+
+    need = models.ForeignKey(
+        Needs, on_delete=models.PROTECT, verbose_name=_('Shipments.need')
+    )
+    status = models.CharField(_('Shipments.status'), choices=Status.choices, max_length=32)
+
+    def save(self, *args, **kwargs):
+        self.need.status = Needs.Status.FULFILLED if self.status == self.Status.DONE else Needs.Status.DISABLED
+        self.need.save()
+        return super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _('Shipments')
+        verbose_name_plural = _('Shipments')
+
+    def __str__(self):
+        return f'{self.need} - {self.status}'
