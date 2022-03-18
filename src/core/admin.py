@@ -8,6 +8,7 @@ from core.models import (
     Poi,
     PoiMembership,
     User,
+    Shipments,
 )
 
 
@@ -74,14 +75,17 @@ class GoodsAdmin(BaseModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_add_permission(self, request) -> bool:
-        membership = request.user.member.all()[:]
-        if membership:
-            try:
-                permission = membership[0].group.permissions.get(codename='add_goods')
-            except Permission.DoesNotExist:
-                return False
-            else:
-                return True
+        try:
+            membership = request.user.member.all()[:]
+            if membership:
+                try:
+                    permission = membership[0].group.permissions.get(codename='add_goods')
+                except Permission.DoesNotExist:
+                    return False
+                else:
+                    return True
+        except AttributeError:
+            return False
 
 
 @admin.register(Needs)
@@ -116,15 +120,17 @@ class NeedsAdmin(BaseModelAdmin):
 
 
     def has_add_permission(self, request) -> bool:
-        membership = request.user.member.all()[:]
-        if membership:
-            try:
-                permission = membership[0].group.permissions.get(codename='add_needs')
-            except Permission.DoesNotExist:
-                return False
-            else:
-                return True
-
+        try:
+            membership = request.user.member.all()[:]
+            if membership:
+                try:
+                    permission = membership[0].group.permissions.get(codename='add_needs')
+                except Permission.DoesNotExist:
+                    return False
+                else:
+                    return True
+        except AttributeError:
+            return False
 
 # @admin.register(Organization)
 # class OrganizationAdmin(BaseModelAdmin):
@@ -170,3 +176,19 @@ class PoiMembershipAdmin(BaseModelAdmin):
          "group",
          "is_active",
      ] + BaseModelAdmin.fields
+
+
+@admin.register(Shipments)
+class ShipmentsAdmin(BaseModelAdmin):
+    fields = [
+        "need",
+        "status",
+        "created_by",
+    ] + BaseModelAdmin.fields
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['need'].queryset = Needs.objects.filter(status=Needs.Status.ACTIVE)
+        form.base_fields['created_by'].initial = request.user.pk
+        form.base_fields['created_by'].disabled = True
+        return form
