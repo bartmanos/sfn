@@ -12,7 +12,10 @@
     <title>Hello, world!</title>
     <style>
       .bg-ua {
-        background-color: #0d6efd;
+        background-color: #0066cc;
+      }
+      .bg-ua-rev {
+        background-color: #ffcc00;
       }
     </style>
   </head>
@@ -45,6 +48,13 @@
       </div>
     </div>
   </header>
+    <header class="p-3 bg-ua-rev">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-center">
+          <small>{% translate "Demo version. Only for test purposes." %}/small>
+        </div>
+      </div>
+    </header>
 
     <div class="container">
       {% block content %}
