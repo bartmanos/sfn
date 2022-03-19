@@ -1,7 +1,7 @@
-from django.db import models
 from django.conf import settings
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser, Group
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
@@ -15,9 +15,7 @@ class BaseModel(models.Model):
         on_delete=models.PROTECT,
         verbose_name=_("BaseModel.created_by"),
     )
-    updated_at = models.DateTimeField(
-        auto_now=True, verbose_name=_("BaseModel.updated_at")
-    )
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("BaseModel.updated_at"))
 
     class Meta:
         abstract = True
@@ -98,15 +96,13 @@ class Poi(BaseModel):
 
 
 class PoiMembership(BaseModel):
-    member = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name='member', on_delete=models.PROTECT
-    )
+    member = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="member", on_delete=models.PROTECT)
     poi = models.ForeignKey(Poi, on_delete=models.PROTECT)
     group = models.ForeignKey(Group, on_delete=models.PROTECT)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'{self.poi.name}: {self.member.first_name} {self.member.last_name} ({self.group.name})'
+        return f"{self.poi.name}: {self.member.first_name} {self.member.last_name} ({self.group.name})"
 
 
 class Goods(BaseModel):
@@ -134,9 +130,7 @@ class Needs(BaseModel):
         DISABLED = _("Needs.Status.disabled")
         FULFILLED = _("Needs.Status.fulfilled")
 
-    good = models.ForeignKey(
-        Goods, on_delete=models.PROTECT, verbose_name=_("Needs.good")
-    )
+    good = models.ForeignKey(Goods, on_delete=models.PROTECT, verbose_name=_("Needs.good"))
     quantity = models.DecimalField(_("Needs.quantity"), max_digits=10, decimal_places=2)
     unit = models.CharField(_("Needs.unit"), choices=Units.choices, max_length=16)
     due_time = models.DateTimeField(_("Needs.due_time"))
@@ -153,14 +147,12 @@ class Needs(BaseModel):
 
 class Shipments(BaseModel):
     class Status(models.TextChoices):
-        TO_DO = _('Shipments.Status.to_do')
-        IN_PROGRESS = _('Shipments.Status.in_progress')
-        DONE = _('Shipments.Status.done')
+        TO_DO = _("Shipments.Status.to_do")
+        IN_PROGRESS = _("Shipments.Status.in_progress")
+        DONE = _("Shipments.Status.done")
 
-    need = models.ForeignKey(
-        Needs, on_delete=models.PROTECT, verbose_name=_('Shipments.need')
-    )
-    status = models.CharField(_('Shipments.status'), choices=Status.choices, max_length=32)
+    need = models.ForeignKey(Needs, on_delete=models.PROTECT, verbose_name=_("Shipments.need"))
+    status = models.CharField(_("Shipments.status"), choices=Status.choices, max_length=32)
 
     def save(self, *args, **kwargs):
         self.need.status = Needs.Status.FULFILLED if self.status == self.Status.DONE else Needs.Status.DISABLED
@@ -168,8 +160,8 @@ class Shipments(BaseModel):
         return super().save(*args, **kwargs)
 
     class Meta:
-        verbose_name = _('Shipments')
-        verbose_name_plural = _('Shipments')
+        verbose_name = _("Shipments")
+        verbose_name_plural = _("Shipments")
 
     def __str__(self):
-        return f'{self.need} - {self.status}'
+        return f"{self.need} - {self.status}"

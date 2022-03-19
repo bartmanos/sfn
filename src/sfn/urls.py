@@ -16,14 +16,15 @@ Including another URLconf
 
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
 from django.views.generic import TemplateView
+
 from core.views import NeedsView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('oauth/', include('social_django.urls', namespace='social')),
-    path('terms/', TemplateView.as_view(template_name='terms.html')),
-    path('privacy/', TemplateView.as_view(template_name='privacy.html')),
-    path('', NeedsView.as_view()),
+    path("admin/", admin.site.urls),
+    path("oauth/", include("social_django.urls", namespace="social")),
+    path("terms/", TemplateView.as_view(template_name="terms.html")),
+    path("privacy/", TemplateView.as_view(template_name="privacy.html")),
+    path("", NeedsView.as_view()),
 ]
