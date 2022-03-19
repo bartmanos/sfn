@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from core.models import Needs
 
-# Create your views here.
+
+class NeedsView(ListView):
+    queryset = Needs.objects.filter(status=Needs.Status.ACTIVE).order_by('-created_at')

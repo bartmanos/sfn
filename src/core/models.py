@@ -26,7 +26,7 @@ class BaseModel(models.Model):
 class UserManager(BaseUserManager):
     def create_user(self, username, email, password=None, **other_fields):
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError("Users must have an email address")
 
         user = self.model(
             username=username,
@@ -35,7 +35,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
 
-        group = Group.objects.get(name='Regular user')
+        group = Group.objects.get(name="Regular user")
         group.user_set.add(user)
         return user
 
@@ -68,8 +68,8 @@ class Organization(BaseModel):
     contact = models.TextField(_("Organization.contact"))
 
     class Meta:
-        verbose_name = _('Organization')
-        verbose_name_plural = _('Organizations')
+        verbose_name = _("Organization")
+        verbose_name_plural = _("Organizations")
 
     def __str__(self):
         return self.name
@@ -79,26 +79,45 @@ class Poi(BaseModel):
     name = models.TextField(_("Poi.name"))
     description = models.TextField(_("Poi.description"))
     contact = models.TextField(_("Poi.contact"))
-    organization = models.ForeignKey(
-        Organization, on_delete=models.PROTECT, verbose_name=_("Poi.organization")
+    # organization = models.ForeignKey(
+    #     Organization, on_delete=models.PROTECT, verbose_name=_("Poi.organization")
+    # )
+    members = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="members",
+        through="PoiMembership",
+        through_fields=("poi", "member"),
     )
 
     class Meta:
-        verbose_name = _('Poi')
-        verbose_name_plural = _('Pois')
+        verbose_name = _("Poi")
+        verbose_name_plural = _("Pois")
 
     def __str__(self):
         return self.name
+
+
+class PoiMembership(BaseModel):
+    member = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name='member', on_delete=models.PROTECT
+    )
+    poi = models.ForeignKey(Poi, on_delete=models.PROTECT)
+    group = models.ForeignKey(Group, on_delete=models.PROTECT)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f'{self.poi.name}: {self.member.first_name} {self.member.last_name} ({self.group.name})'
 
 
 class Goods(BaseModel):
     name = models.TextField(_("Goods.name"))
     description = models.TextField(_("Goods.description"), blank=True)
     link = models.TextField(_("Goods.link"), blank=True)
+    poi = models.ForeignKey(Poi, on_delete=models.PROTECT)
 
     class Meta:
-        verbose_name = _('Goods')
-        verbose_name_plural = _('Goods')
+        verbose_name = _("Goods")
+        verbose_name_plural = _("Goods")
 
     def __str__(self):
         return self.name
@@ -113,6 +132,7 @@ class Needs(BaseModel):
     class Status(models.TextChoices):
         ACTIVE = _("Needs.Status.active")
         DISABLED = _("Needs.Status.disabled")
+        FULFILLED = _("Needs.Status.fulfilled")
 
     good = models.ForeignKey(
         Goods, on_delete=models.PROTECT, verbose_name=_("Needs.good")
@@ -121,11 +141,35 @@ class Needs(BaseModel):
     unit = models.CharField(_("Needs.unit"), choices=Units.choices, max_length=16)
     due_time = models.DateTimeField(_("Needs.due_time"))
     poi = models.ForeignKey(Poi, on_delete=models.PROTECT, verbose_name=_("Needs.poi"))
-    status = models.CharField(_("Needs.status"), choices=Status.choices, max_length=32)
+    status = models.CharField(_("Needs.status"), choices=Status.choices, default=Status.ACTIVE, max_length=32)
 
     class Meta:
-        verbose_name = _('Needs')
-        verbose_name_plural = _('Needs')
+        verbose_name = _("Needs")
+        verbose_name_plural = _("Needs")
 
     def __str__(self):
         return f"{self.good.name} - {self.quantity} {self.unit} - {_('Needs.due_time')}: {self.due_time}"
+
+
+class Shipments(BaseModel):
+    class Status(models.TextChoices):
+        TO_DO = _('Shipments.Status.to_do')
+        IN_PROGRESS = _('Shipments.Status.in_progress')
+        DONE = _('Shipments.Status.done')
+
+    need = models.ForeignKey(
+        Needs, on_delete=models.PROTECT, verbose_name=_('Shipments.need')
+    )
+    status = models.CharField(_('Shipments.status'), choices=Status.choices, max_length=32)
+
+    def save(self, *args, **kwargs):
+        self.need.status = Needs.Status.FULFILLED if self.status == self.Status.DONE else Needs.Status.DISABLED
+        self.need.save()
+        return super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _('Shipments')
+        verbose_name_plural = _('Shipments')
+
+    def __str__(self):
+        return f'{self.need} - {self.status}'
