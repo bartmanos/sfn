@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-18 17:53+0000\n"
+"POT-Creation-Date: 2022-03-19 10:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgstr "Organizacja"
 msgid "Organizations"
 msgstr "Organizacje"
 
-#: core/models.py:79
+#: core/models.py:79 templates/core/needs_list.html:54
 msgid "Poi.name"
 msgstr "Nazwa"
 
@@ -90,7 +90,7 @@ msgstr "POI"
 msgid "Pois"
 msgstr "POI"
 
-#: core/models.py:113
+#: core/models.py:113 templates/core/needs_list.html:51
 msgid "Goods.name"
 msgstr "Nazwa"
 
@@ -128,35 +128,67 @@ msgstr ""
 msgid "Needs.Status.disabled"
 msgstr ""
 
-#: core/models.py:137
+#: core/models.py:135
+#, fuzzy
+#| msgid "Needs.status"
+msgid "Needs.Status.fulfilled"
+msgstr "Status"
+
+#: core/models.py:138
 msgid "Needs.good"
 msgstr "Dobro"
 
-#: core/models.py:139
+#: core/models.py:140 templates/core/needs_list.html:52
 msgid "Needs.quantity"
 msgstr "Ilość"
 
-#: core/models.py:140
+#: core/models.py:141
 msgid "Needs.unit"
 msgstr "Jednostka"
 
-#: core/models.py:141
+#: core/models.py:142 templates/core/needs_list.html:53
 msgid "Needs.due_time"
 msgstr "Na kiedy"
 
-#: core/models.py:142
+#: core/models.py:143
 msgid "Needs.poi"
 msgstr "POI"
 
-#: core/models.py:143
+#: core/models.py:144
 msgid "Needs.status"
 msgstr "Status"
 
-#: core/models.py:146 core/models.py:147
+#: core/models.py:147 core/models.py:148
 #, fuzzy
 #| msgid "Needs.poi"
 msgid "Needs"
 msgstr "POI"
+
+#: core/models.py:156
+msgid "Shipments.Status.to_do"
+msgstr ""
+
+#: core/models.py:157
+msgid "Shipments.Status.in_progress"
+msgstr ""
+
+#: core/models.py:158
+msgid "Shipments.Status.done"
+msgstr ""
+
+#: core/models.py:161
+msgid "Shipments.need"
+msgstr ""
+
+#: core/models.py:163
+#, fuzzy
+#| msgid "Needs.status"
+msgid "Shipments.status"
+msgstr "Status"
+
+#: core/models.py:171 core/models.py:172
+msgid "Shipments"
+msgstr ""
 
 #: sfn/settings.py:119
 msgid "Polish"
@@ -181,17 +213,21 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: templates/admin/login.html:63 templates/home/index.html:40
+#: templates/admin/login.html:63 templates/core/needs_list.html:40
 msgid "Log in"
 msgstr "Zaloguj się"
 
-#: templates/home/index.html:28
+#: templates/core/needs_list.html:28
 msgid "html.home.index.Home"
 msgstr "SFN"
 
-#: templates/home/index.html:41
+#: templates/core/needs_list.html:41
 msgid "Sign-up"
 msgstr "Zarejestruj się"
+
+#: templates/core/needs_list.html:55 templates/core/needs_list.html:65
+msgid "Fulfill"
+msgstr ""
 
 #~ msgid "Poi.organization"
 #~ msgstr "Organizacja"

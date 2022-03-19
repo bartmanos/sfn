@@ -52,6 +52,7 @@
           <th scope="col">{% translate "Needs.quantity" %}</th>
           <th scope="col">{% translate "Needs.due_time" %}</th>
           <th scope="col">{% translate "Poi.name" %}</th>
+          {% if user.is_authenticated %}<th scope="col">{% translate "Fulfill" %}</th>{% endif %}
         </tr>
       </thead>
       <tbody>
@@ -61,6 +62,7 @@
           <td>{{ need.quantity }} {{ need.unit }}</td>
           <td>{{ need.due_time }}</td>
           <td>{{ need.poi.name }}</td>
+          {% if user.is_authenticated %}<th scope="col">{% translate "Fulfill" %}</th>{% endif %}
         </tr>
     {% endfor %}
       </tbody>
