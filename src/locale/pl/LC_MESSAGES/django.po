@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-19 20:51+0000\n"
+"POT-Creation-Date: 2022-03-19 22:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -217,25 +217,29 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr "Zapomniałeś hasła?"
 
-#: templates/admin/login.html:63 templates/base.html:42
+#: templates/admin/login.html:63 templates/base.html:45
 msgid "Log in"
 msgstr "Zaloguj się"
 
-#: templates/base.html:28
+#: templates/base.html:31
 msgid "Home"
 msgstr "Support For Needs"
 
-#: templates/base.html:29
+#: templates/base.html:32
 msgid "Terms and Conditions"
 msgstr "Zasady i Warunki"
 
-#: templates/base.html:30
+#: templates/base.html:33
 msgid "Privacy policy"
 msgstr "Polityka prywatności"
 
-#: templates/base.html:43
+#: templates/base.html:46
 msgid "Manage"
 msgstr "Panel"
+
+#: templates/base.html:54
+msgid "Demo version. Only for test purposes."
+msgstr "Wersja demonstracyjna. Tylko do celów testowych."
 
 #: templates/core/needs_list.html:12 templates/core/needs_list.html:22
 msgid "Fulfill"
