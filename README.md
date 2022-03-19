@@ -133,6 +133,10 @@ Infra details
 
 # Developer guide
 
+## pre-commit setup
+
+Install pre-commit with `pip install -U pre-commit` inside the virtualenv and then run `pre-commit install`. 
+
 ## Database
 
     $ cat ~/.pg_service.conf
