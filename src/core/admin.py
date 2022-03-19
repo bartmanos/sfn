@@ -1,8 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Permission
+from django.utils.translation import gettext_lazy as _
 
 from core.models import Goods, Needs, Poi, PoiMembership, Shipments, User
+
+admin.site.site_title = _("Home")
+admin.site.site_header = _("Home")
 
 
 def _has_add_permission(request, codenames) -> bool:
