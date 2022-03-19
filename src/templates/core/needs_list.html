@@ -44,6 +44,29 @@
     </div>
   </header>
 
+    <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate "Goods.name" %}</th>
+          <th scope="col">{% translate "Needs.quantity" %}</th>
+          <th scope="col">{% translate "Needs.due_time" %}</th>
+          <th scope="col">{% translate "Poi.name" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for need in object_list %}
+        <tr>
+          <td>{{ need.good.name }}</td>
+          <td>{{ need.quantity }} {{ need.unit }}</td>
+          <td>{{ need.due_time }}</td>
+          <td>{{ need.poi.name }}</td>
+        </tr>
+    {% endfor %}
+      </tbody>
+    </table>
+    </div>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
