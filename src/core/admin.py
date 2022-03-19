@@ -5,6 +5,22 @@ from django.contrib.auth.models import Permission
 from core.models import Goods, Needs, Poi, PoiMembership, Shipments, User
 
 
+def _has_add_permission(request, codenames) -> bool:
+    try:
+        membership = request.user.member.all()[:]
+        print("membership", membership)
+        if membership:
+            try:
+                for codename in codenames:
+                    membership[0].group.permissions.get(codename=codename)
+            except Permission.DoesNotExist:
+                return False
+            else:
+                return True
+    except AttributeError:
+        return False
+
+
 class BaseModelAdmin(admin.ModelAdmin):
     readonly_fields = [
         "created_at",
@@ -57,9 +73,7 @@ class GoodsAdmin(BaseModelAdmin):
         # Dropdown shows only POIs in which user has active membership
         # with high enough permissions to add goods
         if db_field.name == "poi":
-            memberships = PoiMembership.objects.filter(
-                member=request.user, is_active=True
-            ).all()
+            memberships = PoiMembership.objects.filter(member=request.user, is_active=True).all()
             pois = []
             for membership in memberships:
                 for perm in membership.group.permissions.all():
@@ -70,17 +84,7 @@ class GoodsAdmin(BaseModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_add_permission(self, request) -> bool:
-        try:
-            membership = request.user.member.all()[:]
-            if membership:
-                try:
-                    membership[0].group.permissions.get(codename="add_goods")
-                except Permission.DoesNotExist:
-                    return False
-                else:
-                    return True
-        except AttributeError:
-            return False
+        _has_add_permission(request, ["add_goods"])
 
 
 @admin.register(Needs)
@@ -92,6 +96,7 @@ class NeedsAdmin(BaseModelAdmin):
         "due_time",
         "poi",
         "status",
+        # "shipment",
     ] + BaseModelAdmin.fields
 
     search_fields = ["good__name", "good__description"]
@@ -100,9 +105,7 @@ class NeedsAdmin(BaseModelAdmin):
         # Dropdown shows only POIs in which user has active membership
         # with high enough permissions to add needs
         if db_field.name == "poi":
-            memberships = PoiMembership.objects.filter(
-                member=request.user, is_active=True
-            ).all()
+            memberships = PoiMembership.objects.filter(member=request.user, is_active=True).all()
             pois = []
             for membership in memberships:
                 for perm in membership.group.permissions.all():
@@ -113,17 +116,7 @@ class NeedsAdmin(BaseModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_add_permission(self, request) -> bool:
-        try:
-            membership = request.user.member.all()[:]
-            if membership:
-                try:
-                    membership[0].group.permissions.get(codename="add_needs")
-                except Permission.DoesNotExist:
-                    return False
-                else:
-                    return True
-        except AttributeError:
-            return False
+        _has_add_permission(request, ["add_needs"])
 
 
 # @admin.register(Organization)
@@ -179,9 +172,10 @@ class ShipmentsAdmin(BaseModelAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
-        form.base_fields["need"].queryset = Needs.objects.filter(
-            status=Needs.Status.ACTIVE
-        )
+        form.base_fields["need"].queryset = Needs.objects.filter(status=Needs.Status.ACTIVE)
         form.base_fields["created_by"].initial = request.user.pk
         form.base_fields["created_by"].disabled = True
         return form
+
+    def has_add_permission(self, request) -> bool:
+        _has_add_permission(request, ["add_shipments"])
