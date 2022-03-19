@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-47l9op@!(34qjxz!4)4(ot2(7z0fx%@9g83ro0yadkk3-8%!il
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["sfn-project.org", "127.0.0.1"]
 
 
 # Application definition
@@ -149,7 +149,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/admin/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 # SOCIAL_AUTH_LOGIN_URL = '/admin/'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '...'  # App ID

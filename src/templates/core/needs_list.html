@@ -37,8 +37,8 @@
 
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">{% translate "Log in" %}</button>
-          <button type="button" class="btn btn-warning">{% translate "Sign-up" %}</button>
+          {% if user.is_anonymous %}<a href="/admin/" role="button" class="btn btn-warning">{% translate "Log in" %}</a>{% endif %}
+          {% if user.is_staff %}<a href="/admin/" role="button" class="btn btn-outline-light me-2">{% translate "Manage" %}</a>{% endif %}
         </div>
       </div>
     </div>
