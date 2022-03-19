@@ -156,7 +156,10 @@ Install pre-commit with `pip install -U pre-commit` inside the virtualenv and th
     $ CREATE DATABASE sfn;
 
     $ cd src
+    $ ./manage.py migrate core 0001
     $ ./manage.py migrate
+
+    For more details why it's done in two steps see https://code.djangoproject.com/ticket/23422
 
 ## Translations
 
