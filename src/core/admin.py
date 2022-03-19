@@ -112,7 +112,7 @@ class NeedsAdmin(BaseModelAdmin):
             pois = []
             for membership in memberships:
                 for perm in membership.group.permissions.all():
-                    if perm.codename == 'add_goods':
+                    if perm.codename == 'add_needs':
                         pois.append(membership.poi.id)
 
             kwargs["queryset"] = Poi.objects.filter(id__in=pois)

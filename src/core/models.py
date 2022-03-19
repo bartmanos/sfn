@@ -141,7 +141,7 @@ class Needs(BaseModel):
     unit = models.CharField(_("Needs.unit"), choices=Units.choices, max_length=16)
     due_time = models.DateTimeField(_("Needs.due_time"))
     poi = models.ForeignKey(Poi, on_delete=models.PROTECT, verbose_name=_("Needs.poi"))
-    status = models.CharField(_("Needs.status"), choices=Status.choices, max_length=32)
+    status = models.CharField(_("Needs.status"), choices=Status.choices, default=Status.ACTIVE, max_length=32)
 
     class Meta:
         verbose_name = _("Needs")
