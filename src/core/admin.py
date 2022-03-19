@@ -84,7 +84,10 @@ class GoodsAdmin(BaseModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_add_permission(self, request) -> bool:
-        _has_add_permission(request, ["add_goods"])
+        if super().has_add_permission(request):
+            return True
+        else:
+            return _has_add_permission(request, ["add_goods"])
 
 
 @admin.register(Needs)
@@ -116,7 +119,10 @@ class NeedsAdmin(BaseModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_add_permission(self, request) -> bool:
-        _has_add_permission(request, ["add_needs"])
+        if super().has_add_permission(request):
+            return True
+        else:
+            return _has_add_permission(request, ["add_needs"])
 
 
 # @admin.register(Organization)
@@ -178,4 +184,7 @@ class ShipmentsAdmin(BaseModelAdmin):
         return form
 
     def has_add_permission(self, request) -> bool:
-        _has_add_permission(request, ["add_shipments"])
+        if super().has_add_permission(request):
+            return True
+        else:
+            return _has_add_permission(request, ["add_shipments"])
