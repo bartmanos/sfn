@@ -135,7 +135,23 @@ Infra details
 
 ## pre-commit setup
 
-Install pre-commit with `pip install -U pre-commit` inside the virtualenv and then run `pre-commit install`. 
+Install pre-commit with `pip install -U pre-commit` inside the virtualenv and then run `pre-commit install`.
+
+## Environment variables
+
+Application requires some environment variables:
+
+- SOCIAL_AUTH_GOOGLE_OAUTH2_KEY (see Google Auth Configuration)
+- SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET (see Google Auth Configuration)
+
+## Google Auth Configuration
+
+For local purposes you need to create own app and credentials.
+Go to https://console.cloud.google.com/apis/credentials add New project and then Create credentials.
+Select OAuth client ID, application type is Web application.
+As "Authorized redirect URIs" set `http://127.0.0.1:8000/oauth/complete/google-oauth2/`
+On the right side of screen you will see Client ID and Client secret. These are values that need to be set
+as `SOCIAL_AUTH_GOOGLE_OAUTH2_KEY` and `SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET` env variables.
 
 ## Database
 
