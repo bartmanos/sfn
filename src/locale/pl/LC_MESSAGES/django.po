@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-19 10:50+0000\n"
+"POT-Creation-Date: 2022-03-19 18:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,7 +68,7 @@ msgstr "Organizacja"
 msgid "Organizations"
 msgstr "Organizacje"
 
-#: core/models.py:79 templates/core/needs_list.html:54
+#: core/models.py:79 templates/core/needs_list.html:11
 msgid "Poi.name"
 msgstr "Nazwa"
 
@@ -90,7 +90,7 @@ msgstr "POI"
 msgid "Pois"
 msgstr "POI"
 
-#: core/models.py:113 templates/core/needs_list.html:51
+#: core/models.py:113 templates/core/needs_list.html:8
 msgid "Goods.name"
 msgstr "Nazwa"
 
@@ -138,7 +138,7 @@ msgstr "Status"
 msgid "Needs.good"
 msgstr "Dobro"
 
-#: core/models.py:140 templates/core/needs_list.html:52
+#: core/models.py:140 templates/core/needs_list.html:9
 msgid "Needs.quantity"
 msgstr "Ilość"
 
@@ -146,7 +146,7 @@ msgstr "Ilość"
 msgid "Needs.unit"
 msgstr "Jednostka"
 
-#: core/models.py:142 templates/core/needs_list.html:53
+#: core/models.py:142 templates/core/needs_list.html:10
 msgid "Needs.due_time"
 msgstr "Na kiedy"
 
@@ -213,21 +213,30 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: templates/admin/login.html:63 templates/core/needs_list.html:40
+#: templates/admin/login.html:63 templates/base.html:41
 msgid "Log in"
 msgstr "Zaloguj się"
 
-#: templates/core/needs_list.html:28
+#: templates/base.html:28
 msgid "html.home.index.Home"
 msgstr "SFN"
 
-#: templates/core/needs_list.html:41
-msgid "Sign-up"
-msgstr "Zarejestruj się"
+#: templates/base.html:29
+#, fuzzy
+#| msgid "html.home.index.Home"
+msgid "html.home.index.Terms"
+msgstr "Zasady i Warunki"
 
-#: templates/core/needs_list.html:55 templates/core/needs_list.html:65
+#: templates/base.html:42
+msgid "Manage"
+msgstr ""
+
+#: templates/core/needs_list.html:12 templates/core/needs_list.html:22
 msgid "Fulfill"
 msgstr ""
+
+#~ msgid "Sign-up"
+#~ msgstr "Zarejestruj się"
 
 #~ msgid "Poi.organization"
 #~ msgstr "Organizacja"
