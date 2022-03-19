@@ -176,3 +176,7 @@ SOCIAL_AUTH_PIPELINE = [
 ]
 
 AUTH_USER_MODEL = "core.User"
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://sfn-project.org",
+]
