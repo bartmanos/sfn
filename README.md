@@ -160,4 +160,17 @@ Install pre-commit with `pip install -U pre-commit` inside the virtualenv and th
 
 ## Translations
 
+    To prepare files for translators:
+
     $ ./manage.py makemessages -a
+
+    These files are stored in repository
+
+    To see translations in running app you need run:
+
+    $ ./manage.py compilemessages -a
+    processing file django.po in /home/user/sfn/src/locale/en/LC_MESSAGES
+    processing file django.po in /home/user/sfn/src/locale/pl/LC_MESSAGES
+    processing file django.po in /home/user/sfn/src/locale/ua/LC_MESSAGES
+
+    These files ARE NOT stored in repository, thus must be created on each env separately
