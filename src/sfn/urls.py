@@ -24,5 +24,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('oauth/', include('social_django.urls', namespace='social')),
     path('terms/', TemplateView.as_view(template_name='terms.html')),
+    path('privacy/', TemplateView.as_view(template_name='privacy.html')),
     path('', NeedsView.as_view()),
 ]

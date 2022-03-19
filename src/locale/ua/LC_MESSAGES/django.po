@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-19 18:21+0000\n"
+"POT-Creation-Date: 2022-03-19 18:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -192,19 +192,23 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: templates/admin/login.html:63 templates/base.html:41
+#: templates/admin/login.html:63 templates/base.html:42
 msgid "Log in"
 msgstr ""
 
 #: templates/base.html:28
-msgid "html.home.index.Home"
+msgid "Home"
 msgstr ""
 
 #: templates/base.html:29
-msgid "html.home.index.Terms"
+msgid "Terms and Conditions"
 msgstr ""
 
-#: templates/base.html:42
+#: templates/base.html:30
+msgid "Privacy policy"
+msgstr ""
+
+#: templates/base.html:43
 msgid "Manage"
 msgstr ""
 
