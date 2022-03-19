@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser, Group
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 class BaseModel(models.Model):
@@ -148,7 +149,12 @@ class Needs(BaseModel):
         verbose_name_plural = _("Needs")
 
     def __str__(self):
-        return f"{self.good.name} - {self.quantity} {self.unit} - {_('Needs.due_time')}: {self.due_time}"
+        return f"{self. status} > {self.good.name} - {self.quantity} {self.unit} - {_('Needs.due_time')}: {self.due_time}"
+
+    def save(self, *args, **kwargs):
+        if self.status == Needs.Status.FULFILLED:
+            self.shipment.update(status=Shipments.Status.DONE)
+        return super().save(*args, **kwargs)
 
 
 class Shipments(BaseModel):
@@ -158,14 +164,23 @@ class Shipments(BaseModel):
         DONE = _('Shipments.Status.done')
 
     need = models.ForeignKey(
-        Needs, on_delete=models.PROTECT, verbose_name=_('Shipments.need')
+        Needs, on_delete=models.PROTECT, verbose_name=_('Shipments.need'), related_name='shipment'
     )
+    Needs.objects.filter(status=Needs.Status.ACTIVE)
     status = models.CharField(_('Shipments.status'), choices=Status.choices, max_length=32)
 
     def save(self, *args, **kwargs):
-        self.need.status = Needs.Status.FULFILLED if self.status == self.Status.DONE else Needs.Status.DISABLED
+        self.need.status = Needs.Status.DISABLED
         self.need.save()
         return super().save(*args, **kwargs)
+
+    def clean(self):
+        if Shipments.objects.filter(
+                status__in=(Shipments.Status.TO_DO, Shipments.Status.IN_PROGRESS),
+                created_by=self.created_by
+            ).count() >= 20:
+
+            raise ValidationError(_('Too many shipments for one user'))
 
     class Meta:
         verbose_name = _('Shipments')

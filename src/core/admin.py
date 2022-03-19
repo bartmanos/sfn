@@ -12,6 +12,22 @@ from core.models import (
 )
 
 
+def _has_add_permission(request, codenames) -> bool:
+    try:
+        membership = request.user.member.all()[:]
+        print ('membership', membership)
+        if membership:
+            try:
+                for codename in codenames:
+                    membership[0].group.permissions.get(codename=codename)
+            except Permission.DoesNotExist:
+                return False
+            else:
+                return True
+    except AttributeError:
+        return False
+
+
 class BaseModelAdmin(admin.ModelAdmin):
     readonly_fields = [
         "created_at",
@@ -75,17 +91,7 @@ class GoodsAdmin(BaseModelAdmin):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
     def has_add_permission(self, request) -> bool:
-        try:
-            membership = request.user.member.all()[:]
-            if membership:
-                try:
-                    permission = membership[0].group.permissions.get(codename='add_goods')
-                except Permission.DoesNotExist:
-                    return False
-                else:
-                    return True
-        except AttributeError:
-            return False
+        _has_add_permission(request, ['add_goods'])
 
 
 @admin.register(Needs)
@@ -97,6 +103,7 @@ class NeedsAdmin(BaseModelAdmin):
         "due_time",
         "poi",
         "status",
+        #"shipment",
     ] + BaseModelAdmin.fields
 
     search_fields = [
@@ -120,17 +127,7 @@ class NeedsAdmin(BaseModelAdmin):
 
 
     def has_add_permission(self, request) -> bool:
-        try:
-            membership = request.user.member.all()[:]
-            if membership:
-                try:
-                    permission = membership[0].group.permissions.get(codename='add_needs')
-                except Permission.DoesNotExist:
-                    return False
-                else:
-                    return True
-        except AttributeError:
-            return False
+        _has_add_permission(request, ['add_needs'])
 
 # @admin.register(Organization)
 # class OrganizationAdmin(BaseModelAdmin):
@@ -192,3 +189,6 @@ class ShipmentsAdmin(BaseModelAdmin):
         form.base_fields['created_by'].initial = request.user.pk
         form.base_fields['created_by'].disabled = True
         return form
+
+    def has_add_permission(self, request) -> bool:
+        _has_add_permission(request, ['add_shipments'])
