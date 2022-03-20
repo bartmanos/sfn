@@ -2,10 +2,28 @@ from django.http import HttpResponseForbidden
 from django.views.generic import ListView
 
 from core.models import Needs, Shipments
+from django.core.exceptions import ValidationError
+from django.shortcuts import render
 
 
-class NeedsView(ListView):
-    queryset = Needs.objects.filter(status=Needs.Status.ACTIVE).order_by("-created_at")
+def need_endpoint(request):
+    context = {'needs': Needs.objects.filter(status=Needs.Status.ACTIVE).order_by("-created_at")}
+    if request.method == "POST":
+        try:
+            need_id = request.GET.get('need_id')
+            Shipments.objects.create(
+                need_id=need_id,
+                status=Shipments.Status.IN_PROGRESS,
+                created_by=request.user,
+            )
+        except ValidationError as e:
+            context['errors'] = dict(e).values()
+
+    return render(
+        request=request,
+        template_name="core/needs_list.html",
+        context=context,
+    )
 
 
 class MyShipmentsView(ListView):

@@ -19,7 +19,8 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
 
-from core.views import MyShipmentsView, NeedsView
+from core.views import MyShipmentsView
+from core.views import need_endpoint
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,5 +28,5 @@ urlpatterns = [
     path("terms/", TemplateView.as_view(template_name="terms.html")),
     path("privacy/", TemplateView.as_view(template_name="privacy.html")),
     path("moje-dostawy/", MyShipmentsView.as_view()),
-    path("", NeedsView.as_view()),
+    path("", need_endpoint, name='needs'),
 ]

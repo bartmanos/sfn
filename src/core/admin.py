@@ -183,7 +183,8 @@ class ShipmentsAdmin(BaseModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         form.base_fields["need"].queryset = Needs.objects.filter(status=Needs.Status.ACTIVE)
-        form.base_fields["created_by"].initial = request.user.pk
+        if obj is None:
+            form.base_fields["created_by"].initial = request.user.pk
         form.base_fields["created_by"].disabled = True
         return form
 
