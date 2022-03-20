@@ -216,3 +216,6 @@ LOGGING = {
         },
     },
 }
+
+# Limit of shipments in ToDo/InProgress state per user
+SHIPMENTS_IN_PROGRESS_LIMIT = 20
