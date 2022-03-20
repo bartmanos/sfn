@@ -13,14 +13,14 @@ def apply_migration(apps, schema_editor):
 
     group = Group.objects.get(name='POI admin')
     content_type = ContentType.objects.get_for_model(Poi)
-    perms = ['add_poimembership', 'change_poimembership', "view_membership", "view_needs", "view_goods"]
+    perms = ['add_poimembership', 'change_poimembership', "view_poimembership", "view_needs", "view_goods"]
     for perm in perms:
         permission = Permission.objects.get(codename=perm)
         group.permissions.add(permission)
 
     group = Group.objects.get(name='POI user')
     content_type = ContentType.objects.get_for_model(Poi)
-    perms = ["view_membership", "view_needs", "view_goods"]
+    perms = ["view_poimembership", "view_needs", "view_goods"]
     for perm in perms:
         permission = Permission.objects.get(codename=perm)
         group.permissions.add(permission)
