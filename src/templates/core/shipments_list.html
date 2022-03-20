@@ -20,7 +20,7 @@
           <td>{{ shipment.need.good.name }}</td>
           <td>{{ shipment.need.quantity }} {{ shipment.need.unit }}</td>
           <td>{{ shipment.need.due_time }}</td>
-          <td>{{ shipment.need.poi.name }}</td>
+          <td><a href="{% url 'poi-detail' shipment.need.poi.id %}" target="_blank">{{ shipment.need.poi.name }}</a></td>
           <td>{{ shipment.status }}</td>
           <td>{{ shipment.created_at }}</td>
           <td>{{ shipment.updated_at }}</td>
