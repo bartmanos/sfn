@@ -122,14 +122,14 @@ class Goods(BaseModel):
 
 class Needs(BaseModel):
     class Units(models.TextChoices):
-        KG = _("Needs.Units.kg")
-        L = _("Needs.Units.l")
-        PCS = _("Needs.Units.pcs")
+        KG = "kg", _("Needs.Units.kg")
+        L = "l", _("Needs.Units.l")
+        PCS = "pcs", _("Needs.Units.pcs")
 
     class Status(models.TextChoices):
-        ACTIVE = _("Needs.Status.active")
-        DISABLED = _("Needs.Status.disabled")
-        FULFILLED = _("Needs.Status.fulfilled")
+        ACTIVE = "active", _("Needs.Status.active")
+        DISABLED = "disabled", _("Needs.Status.disabled")
+        FULFILLED = "fulfilled", _("Needs.Status.fulfilled")
 
     good = models.ForeignKey(Goods, on_delete=models.PROTECT, verbose_name=_("Needs.good"))
     quantity = models.DecimalField(_("Needs.quantity"), max_digits=10, decimal_places=2)
@@ -156,9 +156,9 @@ class Needs(BaseModel):
 
 class Shipments(BaseModel):
     class Status(models.TextChoices):
-        TO_DO = _("Shipments.Status.to_do")
-        IN_PROGRESS = _("Shipments.Status.in_progress")
-        DONE = _("Shipments.Status.done")
+        TO_DO = "to do", _("Shipments.Status.to_do")
+        IN_PROGRESS = "in progress", _("Shipments.Status.in_progress")
+        DONE = "done", _("Shipments.Status.done")
 
     need = models.ForeignKey(Needs, on_delete=models.PROTECT, verbose_name=_("Shipments.need"))
     status = models.CharField(_("Shipments.status"), choices=Status.choices, max_length=32)
