@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-19 22:13+0000\n"
+"POT-Creation-Date: 2022-03-20 10:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: core/admin.py:8 core/admin.py:9 templates/base.html:31
+#: templates/base.html:66
+msgid "Home"
+msgstr "Support For Needs"
 
 #: core/models.py:12
 msgid "BaseModel.created_at"
@@ -122,17 +127,15 @@ msgstr "szt"
 
 #: core/models.py:130
 msgid "Needs.Status.active"
-msgstr ""
+msgstr "Widoczna"
 
 #: core/models.py:131
 msgid "Needs.Status.disabled"
-msgstr ""
+msgstr "Niewidoczna (w realizacji)"
 
 #: core/models.py:132
-#, fuzzy
-#| msgid "Needs.status"
 msgid "Needs.Status.fulfilled"
-msgstr "Status"
+msgstr "Spełniona"
 
 #: core/models.py:134
 msgid "Needs.good"
@@ -156,7 +159,7 @@ msgstr "POI"
 
 #: core/models.py:139
 msgid "Needs.status"
-msgstr "Status"
+msgstr "Status potrzeby"
 
 #: core/models.py:142 core/models.py:143
 #, fuzzy
@@ -181,10 +184,8 @@ msgid "Shipments.need"
 msgstr "Potrzeba"
 
 #: core/models.py:163
-#, fuzzy
-#| msgid "Needs.status"
 msgid "Shipments.status"
-msgstr "Status"
+msgstr "Status dostawy"
 
 #: core/models.py:179
 msgid "Too many shipments for one user"
@@ -194,7 +195,7 @@ msgstr "Za wiele niezrealizowanych dostaw na jedną osobę"
 msgid "Shipments"
 msgstr "Dostawy"
 
-#: sfn/settings.py:120
+#: sfn/settings.py:125
 msgid "Polish"
 msgstr "Polski"
 
@@ -217,29 +218,28 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr "Zapomniałeś hasła?"
 
-#: templates/admin/login.html:63 templates/base.html:45
+#: templates/admin/login.html:63 templates/base.html:44
 msgid "Log in"
 msgstr "Zaloguj się"
 
-#: templates/base.html:31
-msgid "Home"
-msgstr "Support For Needs"
+msgid "My shipments"
+msgstr "Moje dostawy"
 
-#: templates/base.html:32
-msgid "Terms and Conditions"
-msgstr "Zasady i Warunki"
-
-#: templates/base.html:33
-msgid "Privacy policy"
-msgstr "Polityka prywatności"
-
-#: templates/base.html:46
+#: templates/base.html:45
 msgid "Manage"
 msgstr "Panel"
 
-#: templates/base.html:54
+#: templates/base.html:53
 msgid "Demo version. Only for test purposes."
 msgstr "Wersja demonstracyjna. Tylko do celów testowych."
+
+#: templates/base.html:67
+msgid "Terms and Conditions"
+msgstr "Zasady i Warunki"
+
+#: templates/base.html:68
+msgid "Privacy policy"
+msgstr "Polityka prywatności"
 
 #: templates/core/needs_list.html:12 templates/core/needs_list.html:22
 msgid "Fulfill"

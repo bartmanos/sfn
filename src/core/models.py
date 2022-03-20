@@ -144,7 +144,8 @@ class Needs(BaseModel):
 
     def __str__(self):
         return (
-            f"{self. status} > {self.good.name} - {self.quantity} {self.unit} - {_('Needs.due_time')}: {self.due_time}"
+            f"{_(self. status)} > {self.good.name} - {self.quantity} {self.unit}"
+            f"- {_('Needs.due_time')}: {self.due_time}"
         )
 
     def save(self, *args, **kwargs):
