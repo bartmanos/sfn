@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-20 11:34+0000\n"
+"POT-Creation-Date: 2022-03-20 13:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,12 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: core/admin.py:8 core/admin.py:9 templates/base.html:31
+#: core/admin.py:8 core/admin.py:9 templates/base.html:63
+#: templates/base.html:98
 msgid "Home"
 msgstr "Support For Needs"
 
-#: core/models.py:12
+#: core/models.py:12 templates/core/shipments_list.html:13
 msgid "BaseModel.created_at"
 msgstr "Data dodania"
 
@@ -32,7 +33,7 @@ msgstr "Data dodania"
 msgid "BaseModel.created_by"
 msgstr "Dodane przez"
 
-#: core/models.py:19
+#: core/models.py:19 templates/core/shipments_list.html:14
 msgid "BaseModel.updated_at"
 msgstr "Data modyfikacji"
 
@@ -73,6 +74,7 @@ msgid "Organizations"
 msgstr "Organizacje"
 
 #: core/models.py:78 templates/core/needs_list.html:11
+#: templates/core/shipments_list.html:11
 msgid "Poi.name"
 msgstr "Nazwa"
 
@@ -95,6 +97,7 @@ msgid "Pois"
 msgstr "POI"
 
 #: core/models.py:110 templates/core/needs_list.html:8
+#: templates/core/shipments_list.html:8
 msgid "Goods.name"
 msgstr "Nazwa"
 
@@ -141,6 +144,7 @@ msgid "Needs.good"
 msgstr "Dobro"
 
 #: core/models.py:135 templates/core/needs_list.html:9
+#: templates/core/shipments_list.html:9
 msgid "Needs.quantity"
 msgstr "Ilość"
 
@@ -149,6 +153,7 @@ msgid "Needs.unit"
 msgstr "Jednostka"
 
 #: core/models.py:137 templates/core/needs_list.html:10
+#: templates/core/shipments_list.html:10
 msgid "Needs.due_time"
 msgstr "Na kiedy"
 
@@ -166,31 +171,31 @@ msgstr "Status potrzeby"
 msgid "Needs"
 msgstr "POI"
 
-#: core/models.py:158
+#: core/models.py:159
 msgid "Shipments.Status.to_do"
 msgstr "Do realizacji"
 
-#: core/models.py:159
+#: core/models.py:160
 msgid "Shipments.Status.in_progress"
 msgstr "W trakcie realizacji"
 
-#: core/models.py:160
+#: core/models.py:161
 msgid "Shipments.Status.done"
 msgstr "Zrobione"
 
-#: core/models.py:162
+#: core/models.py:163
 msgid "Shipments.need"
 msgstr "Potrzeba"
 
-#: core/models.py:163
+#: core/models.py:164 templates/core/shipments_list.html:12
 msgid "Shipments.status"
 msgstr "Status dostawy"
 
-#: core/models.py:179
+#: core/models.py:180
 msgid "Too many shipments for one user"
 msgstr "Za wiele niezrealizowanych dostaw na jedną osobę"
 
-#: core/models.py:182 core/models.py:183
+#: core/models.py:183 core/models.py:184
 msgid "Shipments"
 msgstr "Dostawy"
 
@@ -217,36 +222,53 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr "Zapomniałeś hasła?"
 
-msgid "My shipments"
-msgstr "Moje dostawy"
-
-#: templates/admin/login.html:63 templates/base.html:43
+#: templates/admin/login.html:63 templates/base.html:76
 msgid "Log in"
 msgstr "Zaloguj się"
 
-#: templates/admin/login.html:65
+#: templates/admin/login.html:66
 msgid "Login with Google"
 msgstr "Zaloguj się Googlem"
 
-#: templates/admin/login.html:67
+#: templates/admin/login.html:68
 msgid "Login with Facebook"
 msgstr "Zaloguj się Facebookiem"
 
-#: templates/base.html:44
+#: templates/base.html:64
+msgid "My shipments"
+msgstr "Moje dostawy"
+
+#: templates/base.html:77
 msgid "Manage"
 msgstr "Panel"
 
-#: templates/base.html:52
+#: templates/base.html:85
 msgid "Demo version. Only for test purposes."
 msgstr "Wersja demonstracyjna. Tylko do celów testowych."
 
-#: templates/base.html:66
+#: templates/base.html:99
 msgid "Terms and Conditions"
 msgstr "Zasady i Warunki"
 
-#: templates/base.html:67
+#: templates/base.html:100
 msgid "Privacy policy"
 msgstr "Polityka prywatności"
+
+#: templates/base.html:106
+msgid "Do you like cookies?"
+msgstr "Lubisz ciasteczka?"
+
+#: templates/base.html:106
+msgid "We use cookies to ensure you get the best experience on our website."
+msgstr "Używamy plików cookie, aby zapewnić użytkownikom jak najlepsze warunki korzystania z naszej witryny."
+
+#: templates/base.html:106
+msgid "Learn more"
+msgstr "Dowiedz się więcej"
+
+#: templates/base.html:109
+msgid "I agree"
+msgstr "Zgadzam się"
 
 #: templates/core/needs_list.html:12 templates/core/needs_list.html:22
 msgid "Fulfill"
