@@ -156,7 +156,6 @@ class Needs(BaseModel):
 
 class Shipments(BaseModel):
     class Status(models.TextChoices):
-        TO_DO = "to do", _("Shipments.Status.to_do")
         IN_PROGRESS = "in progress", _("Shipments.Status.in_progress")
         DONE = "done", _("Shipments.Status.done")
 
@@ -172,7 +171,7 @@ class Shipments(BaseModel):
     def clean(self):
         if (
             Shipments.objects.filter(
-                status__in=(Shipments.Status.TO_DO, Shipments.Status.IN_PROGRESS),
+                status=Shipments.Status.IN_PROGRESS,
                 created_by=self.created_by,
             ).count()
             >= 20
