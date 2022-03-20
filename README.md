@@ -1,23 +1,34 @@
 # SFN: Support for Needs
 
-It is a platform based on web application with pc, tablets, phone as a client that is helping to organize and coordinate managing needs between points of interests [poi] (single places, warehauses, volunteers). It's main goal is to shorten time to share needs and to better control needs validation. Sharing info by one click on main page or facebook (or any other media) additionally relieves the load of a volunteer or any person working in the process. Also information is better standarized so other parties have simpler task to answer specific need.
+It is a platform based on web application with pc, tablets, phone as a client
+that is helping to organize and coordinate managing needs between points of interests [poi] (single places, warehouses, volunteers). 
+Its main goal is to shorten time to share needs and to better control needs validation.
+Sharing info by one click on main page or facebook (or any other media) additionally relieves the load of a volunteer or any person working in the process. 
+Also information is better standarized so other parties have simpler task to answer specific need.
 
 
-## Vocabulary:
-product: any resource: water, sandwich, paper, doctor, injection, psyche help, etc
+## Vocabulary
 
-need: need a product: i need water here (send me some water please) -> send me 10 botles of water
-status of a need: need (now), not needed anymore (just arrived or smth), in delivery (someone clicked that it is in delivery)
+**product**: any resource like water, sandwich, paper, doctor, injection, psyche help, etc
 
-user: human who is working in poi/org doing something, can be contacted etc
+**good**: product kind or help type: sandwith, water, trolley, medic
 
-poi: point of interest: a place with some product ready to be taken by someone, has some needs, has a user managing, can be in organization
+**need**: need of a specific good: *I need water here (send me some water please) -> send me 10 botles of water*
 
-org: object collecting other object (poi, users, other org) - it is mainly for grouping needs in one object on every level
+**status of a need**: need (now), not needed anymore (just arrived or smth), in delivery (someone clicked that it is in delivery)
+
+**POI user**: human who is working in poi/org doing something, can be contacted etc
+
+**POI**: point of interest: a place with some product ready to be taken by someone, has some needs, has a POI user managing, can be in organization
+
+**org**: object collecting other object (POIs, POI users, other org) - it is mainly for grouping needs in one object on every level
+
+**user**: a human that can help by managing POI or by fulfilling POIs need
+
+**shipment**: goods on theirs way to satisfy POIs needs
 
 
-
-# Dashboards:
+# Dashboards
 POI level
 - can see any need in any poi (filtered by averything)
 - can add products (on stock, not on stock but needed)
@@ -59,8 +70,20 @@ Features:
 - have to be client platform aware (pc, tablets, phones) and change layout accordingly
 
 
-# Database
-## Organization:
+# Domain model
+
+```mermaid
+erDiagram
+    Need ||--|| Shipment : has
+    User ||--o{ Shipment : fulfills
+    Need ||--|| Good : for
+    POI ||--o{ Need : reports
+    POI }o--o{ POI-User : membership
+    Organization ||--o{ POI : manages
+```
+
+## Organization
+
 Entity having poi and other organizations in his hands
 - id
 - name
@@ -68,19 +91,25 @@ Entity having poi and other organizations in his hands
 - contact
 - facebook id
 
-## User:
+
+## User
+
 Human with a name and contact, working with SFN initiative
-- name
+- first name
+- last name
+- email
 - description
 - contact
-- dates created, updated
+- date created
+- date updated
 
 
-## Poi:
+## POI
+
 Place with some resource or service (for example, a place with boxem full od water near train station, it hase needs, it hase some current status)
 - id
 - name 
-- descrition 
+- description
 - location (geocord)
 - contact info
 - orgnization.id
@@ -89,49 +118,54 @@ Place with some resource or service (for example, a place with boxem full od wat
 - status (working, online, off etc)
 
 
+## Good
 
-## Product:
-Just some product or services that can be needed by someone ro somewhere
+Just some product or services that can be needed by someone or somewhere
 - name
 - description
 - link
-- date created, date updated
+- date created
+- date updated
 - created by
 
 
-## Need:
-- product.name
-- volume needed (litres, kg, pcs etc)
-- how much time need is valid (eg, i need this by tmrv, because in a 5 days everyone will be dead already etc, or, i will need it on friday, not now)
+## Need
+
+- Good name
+- quantity needed (litres, kg, pcs etc)
+- how much time need is valid (eg, i need this by tomorrow, because in a 5 days everyone will be dead already etc, or, i will need it on friday, not now)
 - created by
 - created when
 - create where
 - poi.id
 - status: active, disabled
 
-# Infrastructure:
+
+# Infrastructure
+
 Infra is on me, I can use AWS infra if needed for the start, depends on needs (nomen omen:), I will pay for it or find other help.
 We can use any aws resource if needed.
-For now I am doing doing it as voluunter in my free time, with my own money.
+For now, I am doing it as volunteer in my free time, with my own money.
 Infra details
-- SSL usage is obvious (https://, db conections)
+- SSL usage is obvious (https://, db connections)
 - secure env with AWS is also obvious
-## Personal data:
+
+## Personal data
+
 - org: rather public
-- single person: private untill set by him/her to be public (like phone number), maybe limited to view only by its org
+- single person: private until set by him/her to be public (like phone number), maybe limited to view only by its org
 - poi: rather public, maybe limited to view by org
 
 
-
 # Risks
-- even though concept is based on my personal observations, some practice and my friend's, it can happen to be useless if users will not be using it for plenty of reasons. We need to take into consideration that most of users are just random voluunters wanting to help and it can be too much for them. Thats why is should sa simple as possible but brings some comfort and order.
+- even though concept is based on my personal observations, some practice and my friends, it can happen to be useless if users will not be using it for plenty of reasons. We need to take into consideration that most of users are just random voluunters wanting to help and it can be too much for them. Thats why is should sa simple as possible but brings some comfort and order.
 - criminal user cases
 - spamming with requests
 - fake needs requests
 - fake users, orgs
 
 
-# Developer guide
+# Developers guide
 
 ## pre-commit setup
 
@@ -139,12 +173,12 @@ Install pre-commit with `pip install -U pre-commit` inside the virtualenv and th
 
 ## Environment variables
 
-Application requires some environment variables:
+Application **requires** some environment variables:
 
-- SOCIAL_AUTH_GOOGLE_OAUTH2_KEY (see Google Auth Configuration)
-- SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET (see Google Auth Configuration)
-- SOCIAL_AUTH_FACEBOOK_KEY (App ID)
-- SOCIAL_AUTH_FACEBOOK_SECRET (App Secret)
+- `SOCIAL_AUTH_GOOGLE_OAUTH2_KEY` (see Google Auth Configuration below)
+- `SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET` (see Google Auth Configuration below)
+- `SOCIAL_AUTH_FACEBOOK_KEY` (App ID)
+- `SOCIAL_AUTH_FACEBOOK_SECRET` (App Secret)
 
 If you don't plan to use Google Auth or FB Auth locally, just set empty variables.
 
@@ -179,21 +213,21 @@ as `SOCIAL_AUTH_GOOGLE_OAUTH2_KEY` and `SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET` env va
     $ ./manage.py migrate core 0001
     $ ./manage.py migrate
 
-    For more details why it's done in two steps see https://code.djangoproject.com/ticket/23422
+For more details why the migration done in two steps see https://code.djangoproject.com/ticket/23422
 
 ## Translations
 
-    To prepare files for translators:
+To prepare files for translators:
 
     $ ./manage.py makemessages -a
 
-    These files are stored in repository
+These files are stored in repository
 
-    To see translations in running app you need run:
+To see translations in running app you need run:
 
     $ ./manage.py compilemessages -a
     processing file django.po in /home/user/sfn/src/locale/en/LC_MESSAGES
     processing file django.po in /home/user/sfn/src/locale/pl/LC_MESSAGES
     processing file django.po in /home/user/sfn/src/locale/ua/LC_MESSAGES
 
-    These files ARE NOT stored in repository, thus must be created on each env separately
+These files ARE NOT stored in repository, thus must be created on each env separately
