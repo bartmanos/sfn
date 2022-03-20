@@ -61,10 +61,13 @@
   {% endif %}
   <div class="submit-row">
     <input type="submit" value="{% translate 'Log in' %}">
-    <br><br><br><hr><br><br>
-    <a href="{% url "social:begin" "google-oauth2" %}">Login with Google</a>
-    <br><br>
-    <!-- <a href="{% url "social:begin" "facebook" %}">Login with Facebook</a> -->
+
+    <div class="submit-row" style="margin-top: 25px">
+      <a href="{% url "social:begin" "google-oauth2" %}">{% translate 'Login with Google' %}</a>
+      <br><br>
+      <a href="{% url "social:begin" "facebook" %}">{% translate 'Login with Facebook' %}</a>
+    </div>
+
   </div>
 </form>
 

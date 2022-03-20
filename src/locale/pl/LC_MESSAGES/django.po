@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-20 10:37+0000\n"
+"POT-Creation-Date: 2022-03-20 11:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,6 @@ msgstr ""
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: core/admin.py:8 core/admin.py:9 templates/base.html:31
-#: templates/base.html:66
 msgid "Home"
 msgstr "Support For Needs"
 
@@ -218,26 +217,34 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr "Zapomniałeś hasła?"
 
-#: templates/admin/login.html:63 templates/base.html:44
-msgid "Log in"
-msgstr "Zaloguj się"
-
 msgid "My shipments"
 msgstr "Moje dostawy"
 
-#: templates/base.html:45
+#: templates/admin/login.html:63 templates/base.html:43
+msgid "Log in"
+msgstr "Zaloguj się"
+
+#: templates/admin/login.html:65
+msgid "Login with Google"
+msgstr "Zaloguj się Googlem"
+
+#: templates/admin/login.html:67
+msgid "Login with Facebook"
+msgstr "Zaloguj się Facebookiem"
+
+#: templates/base.html:44
 msgid "Manage"
 msgstr "Panel"
 
-#: templates/base.html:53
+#: templates/base.html:52
 msgid "Demo version. Only for test purposes."
 msgstr "Wersja demonstracyjna. Tylko do celów testowych."
 
-#: templates/base.html:67
+#: templates/base.html:66
 msgid "Terms and Conditions"
 msgstr "Zasady i Warunki"
 
-#: templates/base.html:68
+#: templates/base.html:67
 msgid "Privacy policy"
 msgstr "Polityka prywatności"
 
