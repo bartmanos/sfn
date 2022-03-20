@@ -62,8 +62,11 @@ class BaseModelAdmin(admin.ModelAdmin):
             return True
 
     def _only_my_pois(self, user, perms):
-        memberships = PoiMembership.objects.filter(member=user, is_active=True).all()
         pois = []
+        if user.is_anonymous:
+            return pois
+
+        memberships = PoiMembership.objects.filter(member=user, is_active=True).all()
         for membership in memberships:
             for perm in membership.group.permissions.all():
                 if perm.codename in perms:
