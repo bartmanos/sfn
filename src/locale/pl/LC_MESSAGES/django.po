@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-20 17:34+0000\n"
+"POT-Creation-Date: 2022-03-20 19:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,18 +25,19 @@ msgstr ""
 msgid "Home"
 msgstr "Support For Needs"
 
-#: core/admin.py:196 core/models.py:114 templates/core/needs_list.html:15
+#: core/admin.py:247 core/models.py:114 templates/core/needs_list.html:15
 #: templates/core/shipments_list.html:8
 msgid "Goods.name"
 msgstr "Nazwa"
 
-#: core/admin.py:200 core/models.py:139 templates/core/needs_list.html:16
+#: core/admin.py:251 core/models.py:139 templates/core/needs_list.html:16
 #: templates/core/shipments_list.html:9
 msgid "Needs.quantity"
 msgstr "Ilość"
 
-#: core/admin.py:204 core/models.py:78 templates/core/needs_list.html:18
-#: templates/core/poi_detail.html:10 templates/core/shipments_list.html:11
+#: core/admin.py:255 core/models.py:78 core/models.py:101 core/models.py:117
+#: templates/core/needs_list.html:18 templates/core/poi_detail.html:10
+#: templates/core/shipments_list.html:11
 msgid "Poi.name"
 msgstr "Nazwa POI"
 
@@ -95,6 +96,18 @@ msgstr "POI"
 #: core/models.py:93
 msgid "Pois"
 msgstr "POIe"
+
+#: core/models.py:100
+msgid "Member"
+msgstr "Członek POI"
+
+#: core/models.py:102
+msgid "Group.name"
+msgstr "Grupa"
+
+#: core/models.py:103
+msgid "PoiMembership.is_active"
+msgstr "Czy aktywny"
 
 #: core/models.py:106
 msgid "Poi.member"

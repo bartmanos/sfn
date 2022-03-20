@@ -2,7 +2,7 @@ import logging
 
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import Permission
+from django.contrib.auth.models import Group, Permission
 from django.utils.translation import gettext_lazy as _
 
 from core.models import Goods, Needs, Poi, PoiMembership, Shipments, User
@@ -61,6 +61,16 @@ class BaseModelAdmin(admin.ModelAdmin):
         else:
             return True
 
+    def _only_my_pois(self, user, perms):
+        memberships = PoiMembership.objects.filter(member=user, is_active=True).all()
+        pois = []
+        for membership in memberships:
+            for perm in membership.group.permissions.all():
+                if perm.codename in perms:
+                    logging.info("User %s allowed to %s for %s", user, perm, membership.poi)
+                    pois.append(membership.poi.id)
+        return pois
+
 
 @admin.register(Goods)
 class GoodsAdmin(BaseModelAdmin):
@@ -80,13 +90,7 @@ class GoodsAdmin(BaseModelAdmin):
         # Dropdown shows only POIs in which user has active membership
         # with high enough permissions to add goods
         if db_field.name == "poi":
-            memberships = PoiMembership.objects.filter(member=request.user, is_active=True).all()
-            pois = []
-            for membership in memberships:
-                for perm in membership.group.permissions.all():
-                    if perm.codename == "add_goods":
-                        pois.append(membership.poi.id)
-
+            pois = self._only_my_pois(request.user, ["add_goods"])
             kwargs["queryset"] = Poi.objects.filter(id__in=pois)
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
@@ -94,7 +98,15 @@ class GoodsAdmin(BaseModelAdmin):
         if super().has_add_permission(request):
             return True
         else:
-            return _has_add_permission(request, ["add_goods"])
+            pois = self._only_my_pois(request.user, ["add_goods"])
+            return bool(pois)
+
+    def get_queryset(self, request):
+        # User should see only Membership in POI in which is admin or user
+        logging.debug("User %s requesting goods list in admin", request.user)
+        qs = super().get_queryset(request)
+        pois = self._only_my_pois(request.user, ["view_goods", "change_goods", "add_goods"])
+        return qs.filter(poi_id__in=pois)
 
 
 @admin.register(Needs)
@@ -109,19 +121,25 @@ class NeedsAdmin(BaseModelAdmin):
         # "shipment",
     ] + BaseModelAdmin.fields
 
+    list_display = [
+        "poi",
+        "good",
+        "quantity",
+        "unit",
+        "due_time",
+        "status",
+        "created_by",
+        "created_at",
+        "updated_at",
+    ]
+
     search_fields = ["good__name", "good__description"]
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         # Dropdown shows only POIs in which user has active membership
         # with high enough permissions to add needs
         if db_field.name == "poi":
-            memberships = PoiMembership.objects.filter(member=request.user, is_active=True).all()
-            pois = []
-            for membership in memberships:
-                for perm in membership.group.permissions.all():
-                    if perm.codename == "add_needs":
-                        pois.append(membership.poi.id)
-
+            pois = self._only_my_pois(request.user, ["add_needs"])
             kwargs["queryset"] = Poi.objects.filter(id__in=pois)
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
@@ -129,7 +147,15 @@ class NeedsAdmin(BaseModelAdmin):
         if super().has_add_permission(request):
             return True
         else:
-            return _has_add_permission(request, ["add_needs"])
+            pois = self._only_my_pois(request.user, ["add_needs"])
+            return bool(pois)
+
+    def get_queryset(self, request):
+        # User should see only Membership in POI in which is admin or user
+        logging.debug("User %s requesting needs list in admin", request.user)
+        qs = super().get_queryset(request)
+        pois = self._only_my_pois(request.user, ["view_needs", "change_needs", "add_needs"])
+        return qs.filter(poi_id__in=pois)
 
 
 # @admin.register(Organization)
@@ -173,6 +199,66 @@ class PoiMembershipAdmin(BaseModelAdmin):
         "group",
         "is_active",
     ] + BaseModelAdmin.fields
+
+    list_display = [
+        "member",
+        "poi",
+        "group",
+        "is_active",
+    ]
+
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        # Dropdown shows only POIs in which user has active membership
+        # with high enough permissions to add needs
+        if db_field.name == "group":
+            print("--- GROUP ---")
+            kwargs["queryset"] = Group.objects.filter(name__in=["POI admin", "POI user"])
+        if db_field.name == "poi":
+            pois = self._only_my_pois(request.user, ["add_poimembership", "change_poimembership"])
+            kwargs["queryset"] = Poi.objects.filter(id__in=pois)
+        return super().formfield_for_foreignkey(db_field, request, **kwargs)
+
+    def has_add_permission(self, request) -> bool:
+        if super().has_add_permission(request):
+            return True
+        else:
+            pois = self._only_my_pois(request.user, ["add_poimembership"])
+            return bool(pois)
+
+    def has_module_permission(self, request) -> bool:
+        if super(BaseModelAdmin, self).has_module_permission(request):
+            return True
+        else:
+            pois = self._only_my_pois(request.user, ["view_poimembership"])
+            return bool(pois)
+
+    def has_change_permission(self, request, obj=None) -> bool:
+        # No, you cannot change membership even it was created by you,
+        # hence we call super on BaseModelAdmin, not on PoiMembershipAdmin
+        if super(BaseModelAdmin, self).has_change_permission(request, obj):
+            return True
+        else:
+            if obj is None:
+                return True
+
+            # We need to see if you want to change someones membership
+            # in one of POIs where you change_poimembership.
+            pois = self._only_my_pois(request.user, ["change_poimembership"])
+            logger.info(
+                "User %s is allowed to manage membership in POIs %s and is changing in %s for %s",
+                request.user,
+                pois,
+                obj.poi.id,
+                obj.member,
+            )
+            return obj.poi.id in pois
+
+    def get_queryset(self, request):
+        # User should see only Membership in POI in which is admin or user
+        logging.debug("User %s requesting membership list in admin", request.user)
+        qs = super().get_queryset(request)
+        pois = self._only_my_pois(request.user, ["view_poimembership"])
+        return qs.filter(poi_id__in=pois)
 
 
 @admin.register(Shipments)
