@@ -75,6 +75,10 @@ Features:
 ```mermaid
 erDiagram
     Need ||--|| Shipment : has
+    Need {
+        int quantity
+        str unit
+    }
     User ||--o{ Shipment : fulfills
     Need ||--|| Good : for
     POI ||--o{ Need : reports
