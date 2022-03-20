@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate "Goods.name" %}</th>
+          <th scope="col">{% translate "Needs.quantity" %}</th>
+          <th scope="col">{% translate "Needs.due_time" %}</th>
+          <th scope="col">{% translate "Poi.name" %}</th>
+          <th scope="col">{% translate "Shipments.status" %}</th>
+          <th scope="col">{% translate "BaseModel.created_at" %}</th>
+          <th scope="col">{% translate "BaseModel.updated_at" %}</th>
+        </tr>
+      </thead>
+      <tbody>
+    {% for shipment in object_list %}
+        <tr>
+          <td>{{ shipment.need.good.name }}</td>
+          <td>{{ shipment.need.quantity }} {{ shipment.need.unit }}</td>
+          <td>{{ shipment.need.due_time }}</td>
+          <td>{{ shipment.need.poi.name }}</td>
+          <td>{{ shipment.status }}</td>
+          <td>{{ shipment.created_at }}</td>
+          <td>{{ shipment.updated_at }}</td>
+        </tr>
+    {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

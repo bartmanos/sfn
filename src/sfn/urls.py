@@ -19,12 +19,13 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
 
-from core.views import NeedsView
+from core.views import MyShipmentsView, NeedsView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("oauth/", include("social_django.urls", namespace="social")),
     path("terms/", TemplateView.as_view(template_name="terms.html")),
     path("privacy/", TemplateView.as_view(template_name="privacy.html")),
+    path("moje-dostawy/", MyShipmentsView.as_view()),
     path("", NeedsView.as_view()),
 ]
