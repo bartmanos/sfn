@@ -102,6 +102,10 @@ class PoiMembership(BaseModel):
     group = models.ForeignKey(Group, on_delete=models.PROTECT)
     is_active = models.BooleanField(default=True)
 
+    class Meta:
+        verbose_name = _("Poi.member")
+        verbose_name_plural = _("Poi.members")
+
     def __str__(self):
         return f"{self.poi.name}: {self.member.first_name} {self.member.last_name} ({self.group.name})"
 
@@ -113,7 +117,7 @@ class Goods(BaseModel):
     poi = models.ForeignKey(Poi, on_delete=models.PROTECT)
 
     class Meta:
-        verbose_name = _("Goods")
+        verbose_name = _("Good")
         verbose_name_plural = _("Goods")
 
     def __str__(self):
@@ -139,7 +143,7 @@ class Needs(BaseModel):
     status = models.CharField(_("Needs.status"), choices=Status.choices, default=Status.ACTIVE, max_length=32)
 
     class Meta:
-        verbose_name = _("Needs")
+        verbose_name = _("Need")
         verbose_name_plural = _("Needs")
 
     def __str__(self):
@@ -180,7 +184,7 @@ class Shipments(BaseModel):
             raise ValidationError(_("Too many shipments for one user"))
 
     class Meta:
-        verbose_name = _("Shipments")
+        verbose_name = _("Shipment")
         verbose_name_plural = _("Shipments")
 
     def __str__(self):

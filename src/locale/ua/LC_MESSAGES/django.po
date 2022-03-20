@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-19 22:13+0000\n"
+"POT-Creation-Date: 2022-03-20 16:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: core/models.py:12
+#: core/admin.py:12 core/admin.py:13 templates/base.html:63
+#: templates/base.html:98
+msgid "Home"
+msgstr ""
+
+#: core/admin.py:196 core/models.py:110 templates/core/needs_list.html:15
+#: templates/core/shipments_list.html:8
+msgid "Goods.name"
+msgstr ""
+
+#: core/admin.py:200 core/models.py:135 templates/core/needs_list.html:16
+#: templates/core/shipments_list.html:9
+msgid "Needs.quantity"
+msgstr ""
+
+#: core/admin.py:204 core/models.py:78 templates/core/needs_list.html:18
+#: templates/core/shipments_list.html:11
+msgid "Poi.name"
+msgstr ""
+
+#: core/models.py:12 templates/core/shipments_list.html:13
 msgid "BaseModel.created_at"
 msgstr ""
 
@@ -25,7 +45,7 @@ msgstr ""
 msgid "BaseModel.created_by"
 msgstr ""
 
-#: core/models.py:19
+#: core/models.py:19 templates/core/shipments_list.html:14
 msgid "BaseModel.updated_at"
 msgstr ""
 
@@ -57,10 +77,6 @@ msgstr ""
 msgid "Organizations"
 msgstr ""
 
-#: core/models.py:78 templates/core/needs_list.html:11
-msgid "Poi.name"
-msgstr ""
-
 #: core/models.py:79
 msgid "Poi.description"
 msgstr ""
@@ -75,10 +91,6 @@ msgstr ""
 
 #: core/models.py:93
 msgid "Pois"
-msgstr ""
-
-#: core/models.py:110 templates/core/needs_list.html:8
-msgid "Goods.name"
 msgstr ""
 
 #: core/models.py:111
@@ -121,15 +133,12 @@ msgstr ""
 msgid "Needs.good"
 msgstr ""
 
-#: core/models.py:135 templates/core/needs_list.html:9
-msgid "Needs.quantity"
-msgstr ""
-
 #: core/models.py:136
 msgid "Needs.unit"
 msgstr ""
 
-#: core/models.py:137 templates/core/needs_list.html:10
+#: core/models.py:137 templates/core/needs_list.html:17
+#: templates/core/shipments_list.html:10
 msgid "Needs.due_time"
 msgstr ""
 
@@ -141,39 +150,43 @@ msgstr ""
 msgid "Needs.status"
 msgstr ""
 
-#: core/models.py:142 core/models.py:143
+#: core/models.py:142
+msgid "Need"
+msgstr ""
+
+#: core/models.py:143
 msgid "Needs"
 msgstr ""
 
-#: core/models.py:158
+#: core/models.py:159
 msgid "Shipments.Status.to_do"
 msgstr ""
 
-#: core/models.py:159
+#: core/models.py:160
 msgid "Shipments.Status.in_progress"
 msgstr ""
 
-#: core/models.py:160
+#: core/models.py:161
 msgid "Shipments.Status.done"
 msgstr ""
 
-#: core/models.py:162
+#: core/models.py:163
 msgid "Shipments.need"
 msgstr ""
 
-#: core/models.py:163
+#: core/models.py:164 templates/core/shipments_list.html:12
 msgid "Shipments.status"
 msgstr ""
 
-#: core/models.py:179
+#: core/models.py:180
 msgid "Too many shipments for one user"
 msgstr ""
 
-#: core/models.py:182 core/models.py:183
+#: core/models.py:183 core/models.py:184
 msgid "Shipments"
 msgstr ""
 
-#: sfn/settings.py:120
+#: sfn/settings.py:125
 msgid "Polish"
 msgstr ""
 
@@ -196,30 +209,54 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: templates/admin/login.html:63 templates/base.html:45
+#: templates/admin/login.html:63 templates/base.html:76
 msgid "Log in"
 msgstr ""
 
-#: templates/base.html:31
-msgid "Home"
+#: templates/admin/login.html:66
+msgid "Login with Google"
 msgstr ""
 
-#: templates/base.html:32
-msgid "Terms and Conditions"
+#: templates/admin/login.html:68
+msgid "Login with Facebook"
 msgstr ""
 
-#: templates/base.html:33
-msgid "Privacy policy"
+#: templates/base.html:64
+msgid "My shipments"
 msgstr ""
 
-#: templates/base.html:46
+#: templates/base.html:77
 msgid "Manage"
 msgstr ""
 
-#: templates/base.html:54
+#: templates/base.html:85
 msgid "Demo version. Only for test purposes."
 msgstr ""
 
-#: templates/core/needs_list.html:12 templates/core/needs_list.html:22
+#: templates/base.html:99
+msgid "Terms and Conditions"
+msgstr ""
+
+#: templates/base.html:100
+msgid "Privacy policy"
+msgstr ""
+
+#: templates/base.html:106
+msgid "Do you like cookies?"
+msgstr ""
+
+#: templates/base.html:106
+msgid "We use cookies to ensure you get the best experience on our website."
+msgstr ""
+
+#: templates/base.html:106
+msgid "Learn more"
+msgstr ""
+
+#: templates/base.html:109
+msgid "I agree"
+msgstr ""
+
+#: templates/core/needs_list.html:19 templates/core/needs_list.html:33
 msgid "Fulfill"
 msgstr ""
