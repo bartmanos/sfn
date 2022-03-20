@@ -164,6 +164,7 @@ class Shipments(BaseModel):
     status = models.CharField(_("Shipments.status"), choices=Status.choices, max_length=32)
 
     def save(self, *args, **kwargs):
+        self.full_clean()
         self.need.status = Needs.Status.DISABLED
         self.need.save()
         return super().save(*args, **kwargs)
@@ -176,7 +177,6 @@ class Shipments(BaseModel):
             ).count()
             >= 20
         ):
-
             raise ValidationError(_("Too many shipments for one user"))
 
     class Meta:

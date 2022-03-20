@@ -2,6 +2,13 @@
 {% load i18n %}
 
 {% block content %}
+    {% for error in errors %}
+        {% for e in error %}
+            <div class="alert alert-danger">
+                <strong>{{ e|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
     <table class="table">
       <thead>
         <tr>
@@ -13,13 +20,20 @@
         </tr>
       </thead>
       <tbody>
-    {% for need in object_list %}
+    {% for need in needs %}
         <tr>
           <td>{{ need.good.name }}</td>
           <td>{{ need.quantity }} {{ need.unit }}</td>
           <td>{{ need.due_time }}</td>
           <td>{{ need.poi.name }}</td>
-          {% if user.is_authenticated %}<th scope="col">{% translate "Fulfill" %}</th>{% endif %}
+          {% if user.is_authenticated %}
+            <th scope="col">
+                <form action={% url 'needs' %}?need_id={{ need.id }} method="post">
+                    {% csrf_token %}
+                    <input type="submit" value={% translate "Fulfill" %} class="btn btn-warning">
+                </form>
+            </th>
+          {% endif %}
         </tr>
     {% endfor %}
       </tbody>
