@@ -97,10 +97,12 @@ class Poi(BaseModel):
 
 
 class PoiMembership(BaseModel):
-    member = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="member", on_delete=models.PROTECT)
-    poi = models.ForeignKey(Poi, on_delete=models.PROTECT)
-    group = models.ForeignKey(Group, on_delete=models.PROTECT)
-    is_active = models.BooleanField(default=True)
+    member = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name="member", on_delete=models.PROTECT, verbose_name=_("Member")
+    )
+    poi = models.ForeignKey(Poi, on_delete=models.PROTECT, verbose_name=_("Poi.name"))
+    group = models.ForeignKey(Group, on_delete=models.PROTECT, verbose_name=_("Group.name"))
+    is_active = models.BooleanField(_("PoiMembership.is_active"), default=True)
 
     class Meta:
         verbose_name = _("Poi.member")
@@ -114,7 +116,7 @@ class Goods(BaseModel):
     name = models.TextField(_("Goods.name"))
     description = models.TextField(_("Goods.description"), blank=True)
     link = models.TextField(_("Goods.link"), blank=True)
-    poi = models.ForeignKey(Poi, on_delete=models.PROTECT)
+    poi = models.ForeignKey(Poi, on_delete=models.PROTECT, verbose_name=_("Poi.name"))
 
     class Meta:
         verbose_name = _("Good")
