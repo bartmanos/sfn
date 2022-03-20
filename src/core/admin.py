@@ -1,9 +1,13 @@
+import logging
+
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Permission
 from django.utils.translation import gettext_lazy as _
 
 from core.models import Goods, Needs, Poi, PoiMembership, Shipments, User
+
+logger = logging.getLogger(__name__)
 
 admin.site.site_title = _("Home")
 admin.site.site_header = _("Home")
@@ -12,7 +16,6 @@ admin.site.site_header = _("Home")
 def _has_add_permission(request, codenames) -> bool:
     try:
         membership = request.user.member.all()[:]
-        print("membership", membership)
         if membership:
             try:
                 for codename in codenames:
@@ -180,8 +183,34 @@ class ShipmentsAdmin(BaseModelAdmin):
         "created_by",
     ] + BaseModelAdmin.fields
 
+    list_display = [
+        "poi_name",
+        "need_name",
+        "need_quantity",
+        "status",
+        "created_by",
+        "created_at",
+        "updated_at",
+    ]
+
+    @admin.display(description=_("Goods.name"))
+    def need_name(self, obj):
+        return obj.need.good.name
+
+    @admin.display(description=_("Needs.quantity"))
+    def need_quantity(self, obj):
+        return f"{obj.need.quantity} {obj.need.unit}"
+
+    @admin.display(description=_("Poi.name"))
+    def poi_name(self, obj):
+        return obj.need.poi.name
+
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
+        # I.e. user without change permission
+        if not form.base_fields:
+            return form
+
         form.base_fields["need"].queryset = Needs.objects.filter(status=Needs.Status.ACTIVE)
         if obj is None:
             form.base_fields["created_by"].initial = request.user.pk
@@ -193,3 +222,25 @@ class ShipmentsAdmin(BaseModelAdmin):
             return True
         else:
             return _has_add_permission(request, ["add_shipments"])
+
+    def has_change_permission(self, request, obj=None) -> bool:
+        # No, you cannot change shipment even it was created by you,
+        # hence we call super on BaseModelAdmin, not on ShipmentsModel
+        if super(BaseModelAdmin, self).has_change_permission(request, obj):
+            return True
+        else:
+            return False
+
+    def get_queryset(self, request):
+        # User should see only Shipments to POI in which is admin or user
+        logging.debug("User %s requesting list of shipments in admin", request.user)
+        qs = super().get_queryset(request)
+        memberships = PoiMembership.objects.filter(member=request.user, is_active=True).all()
+        pois = []
+        for membership in memberships:
+            for perm in membership.group.permissions.all():
+                if perm.codename == "view_shipments":
+                    logging.info("User %s allowed to view shipments for %s", request.user, membership.poi)
+                    pois.append(membership.poi.id)
+
+        return qs.filter(need__poi_id__in=pois)
