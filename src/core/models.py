@@ -179,7 +179,7 @@ class Shipments(BaseModel):
                 status__in=(Shipments.Status.TO_DO, Shipments.Status.IN_PROGRESS),
                 created_by=self.created_by,
             ).count()
-            >= 20
+            >= settings.SHIPMENTS_IN_PROGRESS_LIMIT
         ):
             raise ValidationError(_("Too many shipments for one user"))
 
