@@ -25,7 +25,7 @@
           <td>{{ need.good.name }}</td>
           <td>{{ need.quantity }} {{ need.unit }}</td>
           <td>{{ need.due_time }}</td>
-          <td>{{ need.poi.name }}</td>
+          <td><a href="{% url 'poi-detail' need.poi.id %}" target="_blank">{{ need.poi.name }}</a></td>
           {% if user.is_authenticated %}
             <th scope="col">
                 <form action={% url 'needs' %}?need_id={{ need.id }} method="post">

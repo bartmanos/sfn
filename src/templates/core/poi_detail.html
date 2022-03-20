@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <table class="table">
+              <tbody>
+                <tr><th scope="col">{% translate "Poi.name" %}</th><td>{{ object.name }}</td></tr>
+                <tr><th scope="col">{% translate "Poi.description" %}</th><td>{{ object.description }}</td></tr>
+                <tr><th scope="col">{% translate "Poi.contact" %}</th><td>{{ object.contact }}</td></tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+
+{% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-20 16:54+0000\n"
+"POT-Creation-Date: 2022-03-20 17:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,9 +36,9 @@ msgid "Needs.quantity"
 msgstr "Ilość"
 
 #: core/admin.py:204 core/models.py:78 templates/core/needs_list.html:18
-#: templates/core/shipments_list.html:11
+#: templates/core/poi_detail.html:10 templates/core/shipments_list.html:11
 msgid "Poi.name"
-msgstr "Nazwa"
+msgstr "Nazwa POI"
 
 #: core/models.py:12 templates/core/shipments_list.html:13
 msgid "BaseModel.created_at"
@@ -80,11 +80,11 @@ msgstr "Organizacja"
 msgid "Organizations"
 msgstr "Organizacje"
 
-#: core/models.py:79
+#: core/models.py:79 templates/core/poi_detail.html:11
 msgid "Poi.description"
 msgstr "Opis"
 
-#: core/models.py:80
+#: core/models.py:80 templates/core/poi_detail.html:12
 msgid "Poi.contact"
 msgstr "Kontakt"
 
