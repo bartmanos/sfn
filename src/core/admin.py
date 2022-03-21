@@ -66,6 +66,10 @@ class BaseModelAdmin(admin.ModelAdmin):
         if user.is_anonymous:
             return pois
 
+        if user.is_superuser:
+            pois.extend([poi.id for poi in Poi.objects.all()])
+            return pois
+
         memberships = PoiMembership.objects.filter(member=user, is_active=True).all()
         for membership in memberships:
             for perm in membership.group.permissions.all():
@@ -214,7 +218,6 @@ class PoiMembershipAdmin(BaseModelAdmin):
         # Dropdown shows only POIs in which user has active membership
         # with high enough permissions to add needs
         if db_field.name == "group":
-            print("--- GROUP ---")
             kwargs["queryset"] = Group.objects.filter(name__in=["POI admin", "POI user"])
         if db_field.name == "poi":
             pois = self._only_my_pois(request.user, ["add_poimembership", "change_poimembership"])
