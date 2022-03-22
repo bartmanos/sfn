@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n social_share %}
 
 {% block content %}
     {% for error in errors %}
@@ -17,6 +17,7 @@
           <th scope="col">{% translate "Needs.due_time" %}</th>
           <th scope="col">{% translate "Poi.name" %}</th>
           {% if user.is_authenticated %}<th scope="col">{% translate "Fulfill" %}</th>{% endif %}
+          {% if user.is_superuser %}<th scope="col"></th>{% endif %}
         </tr>
       </thead>
       <tbody>
@@ -34,6 +35,7 @@
                 </form>
             </th>
           {% endif %}
+          {% if user.is_superuser %}<td>{% post_to_facebook need %}</td>{% endif %}
         </tr>
     {% endfor %}
       </tbody>

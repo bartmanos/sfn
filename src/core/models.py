@@ -3,6 +3,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser, Group
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 
@@ -153,6 +154,9 @@ class Needs(BaseModel):
             f"{_(self. status)} > {self.good.name} - {self.quantity} {self.unit}"
             f"- {_('Needs.due_time')}: {self.due_time}"
         )
+
+    def get_absolute_url(self):
+        return reverse("need", kwargs={"pk": self.pk})
 
     def save(self, *args, **kwargs):
         if self.status == Needs.Status.FULFILLED:

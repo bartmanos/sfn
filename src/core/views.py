@@ -44,3 +44,7 @@ class MyShipmentsView(ListView):
 
 class PoiView(DetailView):
     model = Poi
+
+
+class NeedView(DetailView):
+    model = Needs
