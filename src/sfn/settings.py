@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "social_django",
+    "django_social_share",
     "core",
 ]
 
@@ -77,6 +78,7 @@ TEMPLATES = [
                 "social_django.context_processors.backends",
                 "social_django.context_processors.login_redirect",
                 "sfn.context_processors.settings",
+                "sfn.context_processors.fb_share",
             ],
         },
     },
