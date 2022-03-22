@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-22 22:46+0000\n"
+"POT-Creation-Date: 2022-03-22 23:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,22 +20,26 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: core/admin.py:12 core/admin.py:13 templates/base.html:64
+#: core/admin.py:13 core/admin.py:14 templates/base.html:64
 #: templates/base.html:102
 msgid "Home"
 msgstr "Support For Needs"
 
-#: core/admin.py:288 core/models.py:117 templates/core/needs_detail.html:16
+#: core/admin.py:147
+msgid "Share on Facebook"
+msgstr "Udostępnij na Facebooku"
+
+#: core/admin.py:294 core/models.py:117 templates/core/needs_detail.html:16
 #: templates/core/needs_list.html:15 templates/core/shipments_list.html:8
 msgid "Goods.name"
 msgstr "Nazwa"
 
-#: core/admin.py:292 core/models.py:142 templates/core/needs_detail.html:17
+#: core/admin.py:298 core/models.py:142 templates/core/needs_detail.html:17
 #: templates/core/needs_list.html:16 templates/core/shipments_list.html:9
 msgid "Needs.quantity"
 msgstr "Ilość"
 
-#: core/admin.py:296 core/models.py:79 core/models.py:104 core/models.py:120
+#: core/admin.py:302 core/models.py:79 core/models.py:104 core/models.py:120
 #: templates/core/needs_detail.html:19 templates/core/needs_list.html:18
 #: templates/core/poi_detail.html:10 templates/core/shipments_list.html:11
 msgid "Poi.name"
@@ -297,18 +301,24 @@ msgstr "Zgadzam się"
 msgid "needed in"
 msgstr "potrzebne w"
 
-#: templates/core/needs_list.html:19 templates/core/needs_list.html:38
-#: templates/core/needs_list.html:46 templates/core/needs_list.html:51
+#: templates/core/needs_detail.html:25
+msgid "Share"
+msgstr "Udostępnij"
+
+#: templates/core/needs_detail.html:39 templates/core/needs_detail.html:47
+#: templates/core/needs_detail.html:52 templates/core/needs_list.html:19
+#: templates/core/needs_list.html:38 templates/core/needs_list.html:46
+#: templates/core/needs_list.html:51
 msgid "Fulfill"
 msgstr "Dostarcz"
 
-#: templates/core/needs_list.html:42
+#: templates/core/needs_detail.html:43 templates/core/needs_list.html:42
 msgid "By clicking fullfill you commit to provide this need. Are you sure?"
 msgstr ""
 "Klikając dostarcz zobowiązujesz się do spełnienia tej potrzeby. Jesteś "
 "pewien?"
 
-#: templates/core/needs_list.html:45
+#: templates/core/needs_detail.html:46 templates/core/needs_list.html:45
 msgid "Close"
 msgstr "Zamknij"
 

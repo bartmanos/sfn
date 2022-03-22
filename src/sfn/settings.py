@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-47l9op@!(34qjxz!4)4(ot2(7z0fx%@9g83ro0yadkk3-8%!il"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not bool(os.getenv("SFN_PROD", True))
+DEBUG = not bool(os.getenv("SFN_PROD", False))
 
 ALLOWED_HOSTS = [
     "sfn-project.org",
