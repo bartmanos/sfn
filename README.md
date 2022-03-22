@@ -183,6 +183,7 @@ Application **requires** some environment variables:
 - `SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET` (see Google Auth Configuration below)
 - `SOCIAL_AUTH_FACEBOOK_KEY` (App ID)
 - `SOCIAL_AUTH_FACEBOOK_SECRET` (App Secret)
+- `ROLLBAR_ACCESS_TOKEN` (rollbar.io)
 
 If you don't plan to use Google Auth or FB Auth locally, just set empty variables.
 

@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-47l9op@!(34qjxz!4)4(ot2(7z0fx%@9g83ro0yadkk3-8%!il"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not bool(os.getenv("SFN_PROD", True))
 
 ALLOWED_HOSTS = [
     "sfn-project.org",
@@ -218,6 +218,12 @@ LOGGING = {
             "propagate": False,
         },
     },
+}
+
+ROLLBAR = {
+    "access_token": os.environ["ROLLBAR_ACCESS_TOKEN"],
+    "environment": "development" if DEBUG else "production",
+    "root": BASE_DIR,
 }
 
 # Limit of shipments in ToDo/InProgress state per user
