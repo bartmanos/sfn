@@ -76,6 +76,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "social_django.context_processors.backends",
                 "social_django.context_processors.login_redirect",
+                "sfn.context_processors.settings",
             ],
         },
     },
@@ -219,3 +220,6 @@ LOGGING = {
 
 # Limit of shipments in ToDo/InProgress state per user
 SHIPMENTS_IN_PROGRESS_LIMIT = 20
+
+# Demo mode
+DEMO = False
