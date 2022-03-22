@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-22 22:16+0000\n"
+"POT-Creation-Date: 2022-03-22 22:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,205 +20,207 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: core/admin.py:12 core/admin.py:13 templates/base.html:63
-#: templates/base.html:101
+#: core/admin.py:12 core/admin.py:13 templates/base.html:64
+#: templates/base.html:102
 msgid "Home"
 msgstr "Support For Needs"
 
-#: core/admin.py:288 core/models.py:116 templates/core/needs_list.html:15
-#: templates/core/shipments_list.html:8
+#: core/admin.py:288 core/models.py:117 templates/core/needs_detail.html:16
+#: templates/core/needs_list.html:15 templates/core/shipments_list.html:8
 msgid "Goods.name"
 msgstr "Nazwa"
 
-#: core/admin.py:292 core/models.py:141 templates/core/needs_list.html:16
-#: templates/core/shipments_list.html:9
+#: core/admin.py:292 core/models.py:142 templates/core/needs_detail.html:17
+#: templates/core/needs_list.html:16 templates/core/shipments_list.html:9
 msgid "Needs.quantity"
 msgstr "Ilość"
 
-#: core/admin.py:296 core/models.py:78 core/models.py:103 core/models.py:119
-#: templates/core/needs_list.html:18 templates/core/poi_detail.html:10
-#: templates/core/shipments_list.html:11
+#: core/admin.py:296 core/models.py:79 core/models.py:104 core/models.py:120
+#: templates/core/needs_detail.html:19 templates/core/needs_list.html:18
+#: templates/core/poi_detail.html:10 templates/core/shipments_list.html:11
 msgid "Poi.name"
 msgstr "Potrzebujący (POI)"
 
-#: core/models.py:12 templates/core/shipments_list.html:13
+#: core/models.py:13 templates/core/shipments_list.html:13
 msgid "BaseModel.created_at"
 msgstr "Data dodania"
 
-#: core/models.py:17
+#: core/models.py:18
 msgid "BaseModel.created_by"
 msgstr "Dodane przez"
 
-#: core/models.py:19 templates/core/shipments_list.html:14
+#: core/models.py:20 templates/core/shipments_list.html:14
 msgid "BaseModel.updated_at"
 msgstr "Data modyfikacji"
 
-#: core/models.py:58
+#: core/models.py:59
 msgid "User.description"
 msgstr "Opis"
 
-#: core/models.py:59
+#: core/models.py:60
 msgid "User.contact"
 msgstr "Kontakt"
 
-#: core/models.py:65
+#: core/models.py:66
 msgid "Organization.name"
 msgstr "Organizacja"
 
-#: core/models.py:66
+#: core/models.py:67
 msgid "Organization.description"
 msgstr "Opis"
 
-#: core/models.py:67
+#: core/models.py:68
 msgid "Organization.contact"
 msgstr "Kontakt"
 
-#: core/models.py:70
+#: core/models.py:71
 msgid "Organization"
 msgstr "Organizacja"
 
-#: core/models.py:71
+#: core/models.py:72
 msgid "Organizations"
 msgstr "Organizacje"
 
-#: core/models.py:79 templates/core/poi_detail.html:11
+#: core/models.py:80 templates/core/needs_detail.html:20
+#: templates/core/poi_detail.html:11
 msgid "Poi.description"
 msgstr "Opis"
 
-#: core/models.py:80 templates/core/poi_detail.html:12
+#: core/models.py:81 templates/core/needs_detail.html:21
+#: templates/core/poi_detail.html:12
 msgid "Poi.contact"
 msgstr "Kontakt"
 
-#: core/models.py:92
+#: core/models.py:93
 msgid "Poi"
 msgstr "POI"
 
-#: core/models.py:93
+#: core/models.py:94
 msgid "Pois"
 msgstr "POIe"
 
-#: core/models.py:101
+#: core/models.py:102
 msgid "Member"
 msgstr "Członek POI"
 
-#: core/models.py:104
+#: core/models.py:105
 msgid "Group.name"
 msgstr "Grupa"
 
-#: core/models.py:105
+#: core/models.py:106
 msgid "PoiMembership.is_active"
 msgstr "Czy aktywny"
 
-#: core/models.py:108
+#: core/models.py:109
 msgid "Poi.member"
 msgstr "Członek POI"
 
-#: core/models.py:109
+#: core/models.py:110
 msgid "Poi.members"
 msgstr "Członkowie POI"
 
-#: core/models.py:117
+#: core/models.py:118
 msgid "Goods.description"
 msgstr "Opis"
 
-#: core/models.py:118
+#: core/models.py:119
 msgid "Goods.link"
 msgstr "URL"
 
-#: core/models.py:122
+#: core/models.py:123
 msgid "Good"
 msgstr "Dobro"
 
-#: core/models.py:123
+#: core/models.py:124
 msgid "Goods"
 msgstr "Dobra"
 
-#: core/models.py:131
+#: core/models.py:132
 msgid "Needs.Units.kg"
 msgstr "kg"
 
-#: core/models.py:132
+#: core/models.py:133
 msgid "Needs.Units.l"
 msgstr "l"
 
-#: core/models.py:133
+#: core/models.py:134
 msgid "Needs.Units.pcs"
 msgstr "szt"
 
-#: core/models.py:136
+#: core/models.py:137
 msgid "Needs.Status.active"
 msgstr "Widoczna"
 
-#: core/models.py:137
+#: core/models.py:138
 msgid "Needs.Status.disabled"
 msgstr "Niewidoczna (w realizacji)"
 
-#: core/models.py:138
+#: core/models.py:139
 msgid "Needs.Status.fulfilled"
 msgstr "Spełniona"
 
-#: core/models.py:140
+#: core/models.py:141
 msgid "Needs.good"
 msgstr "Dobro"
 
-#: core/models.py:142
+#: core/models.py:143
 msgid "Needs.unit"
 msgstr "Jednostka"
 
-#: core/models.py:143 templates/core/needs_list.html:17
-#: templates/core/shipments_list.html:10
+#: core/models.py:144 templates/core/needs_detail.html:18
+#: templates/core/needs_list.html:17 templates/core/shipments_list.html:10
 msgid "Needs.due_time"
 msgstr "Na kiedy"
 
-#: core/models.py:144
+#: core/models.py:145
 msgid "Needs.poi"
 msgstr "POI"
 
-#: core/models.py:145
+#: core/models.py:146
 msgid "Needs.status"
 msgstr "Status potrzeby"
 
-#: core/models.py:148
+#: core/models.py:149
 msgid "Need"
 msgstr "Potrzeba"
 
-#: core/models.py:149
+#: core/models.py:150
 msgid "Needs"
 msgstr "Potrzeby"
 
-#: core/models.py:165
+#: core/models.py:169
 msgid "Shipments.Status.to_do"
 msgstr "Do realizacji"
 
-#: core/models.py:166
+#: core/models.py:170
 msgid "Shipments.Status.in_progress"
 msgstr "W trakcie realizacji"
 
-#: core/models.py:167
+#: core/models.py:171
 msgid "Shipments.Status.done"
 msgstr "Zrobione"
 
-#: core/models.py:169
+#: core/models.py:173
 msgid "Shipments.need"
 msgstr "Potrzeba"
 
-#: core/models.py:170 templates/core/shipments_list.html:12
+#: core/models.py:174 templates/core/shipments_list.html:12
 msgid "Shipments.status"
 msgstr "Status dostawy"
 
-#: core/models.py:186
+#: core/models.py:190
 msgid "Too many shipments for one user"
 msgstr "Za wiele niezrealizowanych dostaw na jedną osobę"
 
-#: core/models.py:189
+#: core/models.py:193
 msgid "Shipment"
 msgstr "Dostawa"
 
-#: core/models.py:190
+#: core/models.py:194
 msgid "Shipments"
 msgstr "Dostawy"
 
-#: sfn/settings.py:126
+#: sfn/settings.py:128
 msgid "Polish"
 msgstr "Polski"
 
@@ -241,7 +243,7 @@ msgstr ""
 msgid "Forgotten your password or username?"
 msgstr "Zapomniałeś hasła?"
 
-#: templates/admin/login.html:63 templates/base.html:76
+#: templates/admin/login.html:63 templates/base.html:77
 msgid "Log in"
 msgstr "Zaloguj się"
 
@@ -253,58 +255,62 @@ msgstr "Zaloguj się Googlem"
 msgid "Login with Facebook"
 msgstr "Zaloguj się Facebookiem"
 
-#: templates/base.html:64
+#: templates/base.html:65
 msgid "My shipments"
 msgstr "Moje dostawy"
 
-#: templates/base.html:77
+#: templates/base.html:78
 msgid "Manage"
 msgstr "Zarządzaj"
 
-#: templates/base.html:87
+#: templates/base.html:88
 msgid "Demo version. Only for test purposes."
 msgstr "Wersja demonstracyjna. Tylko do celów testowych."
 
-#: templates/base.html:102
+#: templates/base.html:103
 msgid "Terms and Conditions"
 msgstr "Zasady i Warunki"
 
-#: templates/base.html:103
+#: templates/base.html:104
 msgid "Privacy policy"
 msgstr "Polityka prywatności"
 
-#: templates/base.html:109
+#: templates/base.html:110
 msgid "Do you like cookies?"
 msgstr "Lubisz ciasteczka?"
 
-#: templates/base.html:109
+#: templates/base.html:110
 msgid "We use cookies to ensure you get the best experience on our website."
 msgstr ""
 "Używamy plików cookie, aby zapewnić użytkownikom jak najlepsze warunki "
 "korzystania z naszej witryny."
 
-#: templates/base.html:109
+#: templates/base.html:110
 msgid "Learn more"
 msgstr "Dowiedz się więcej"
 
-#: templates/base.html:112
+#: templates/base.html:113
 msgid "I agree"
 msgstr "Zgadzam się"
 
-#: templates/core/needs_list.html:19 templates/core/needs_list.html:37
-#: templates/core/needs_list.html:45 templates/core/needs_list.html:50
+#: templates/core/needs_detail.html:7
+msgid "needed in"
+msgstr "potrzebne w"
+
+#: templates/core/needs_list.html:19 templates/core/needs_list.html:38
+#: templates/core/needs_list.html:46 templates/core/needs_list.html:51
 msgid "Fulfill"
 msgstr "Dostarcz"
 
-#: templates/core/needs_list.html:41
+#: templates/core/needs_list.html:42
 msgid "By clicking fullfill you commit to provide this need. Are you sure?"
 msgstr ""
 "Klikając dostarcz zobowiązujesz się do spełnienia tej potrzeby. Jesteś "
 "pewien?"
 
-#: templates/core/needs_list.html:44
+#: templates/core/needs_list.html:45
 msgid "Close"
-msgstr ""
+msgstr "Zamknij"
 
 #~ msgid "Sign-up"
 #~ msgstr "Zarejestruj się"
