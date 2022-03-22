@@ -3,6 +3,7 @@ import logging
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import Group, Permission
+from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
 from core.models import Goods, Needs, Poi, PoiMembership, Shipments, User
@@ -138,9 +139,17 @@ class NeedsAdmin(BaseModelAdmin):
         "created_by",
         "created_at",
         "updated_at",
+        "share_on_facebook",
     ]
 
     search_fields = ["good__name", "good__description"]
+
+    @admin.display(description=_("Share on Facebook"))
+    def share_on_facebook(self, obj):
+        return format_html(
+            f'<a href="https://www.facebook.com/sharer/sharer.php?u=https://sfn-project.org{obj.get_absolute_url()}" '
+            f'target="_blank">{_("Share on Facebook")}</a>'
+        )
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         # Dropdown shows only POIs in which user has active membership

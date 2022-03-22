@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n social_share %}
 
 {% block meta %}
     <meta property="og:url" content="{{ og_url }}" />
@@ -19,6 +19,41 @@
                 <tr><th scope="col">{% translate "Poi.name" %}</th><td>{{ object.poi.name }}</td></tr>
                 <tr><th scope="col">{% translate "Poi.description" %}</th><td>{{ object.poi.description }}</td></tr>
                 <tr><th scope="col">{% translate "Poi.contact" %}</th><td>{{ object.poi.contact }}</td></tr>
+
+                <tr>
+                    <th scope="col">
+                        {%  translate "Share" %}
+                    </th>
+                    <td>{% post_to_facebook need %}</td>
+                </tr>
+                {% if user.is_authenticated %}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <form action={% url 'needs' %}?need_id={{ need.id }} method="post">
+                                {% csrf_token %}
+                                <div class="modal fade" id="fullfull{{ need.id }}" tabindex="-1" aria-labelledby="fullfull{{ need.id }}" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="fullfull{{ need.id }}">{% translate "Fulfill" %}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        {% translate "By clicking fullfill you commit to provide this need. Are you sure?" %}
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% translate "Close" %}</button>
+                                        <input type="submit" value={% translate "Fulfill" %} class="btn btn-warning">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <button type="button" class="btn bg-ua-rev" data-bs-toggle="modal" data-bs-target="#fullfull{{ need.id }}">{% translate "Fulfill" %}</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endif %}
               </tbody>
             </table>
         </div>
