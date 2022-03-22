@@ -156,7 +156,7 @@ class Needs(BaseModel):
 
     def save(self, *args, **kwargs):
         if self.status == Needs.Status.FULFILLED:
-            self.shipment.update(status=Shipments.Status.DONE)
+            self.shipments_set.update(status=Shipments.Status.DONE)
         return super().save(*args, **kwargs)
 
 
