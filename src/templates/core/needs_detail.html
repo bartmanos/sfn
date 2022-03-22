@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block meta %}
+    <meta property="og:url" content="{{ og_url }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ object.good.name }} {{ object.quantity }}{{  object.unit }} {%  translate "needed in" %} {{ object.poi.name }}" />
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <table class="table">
+              <tbody>
+                <tr><th scope="col">{% translate "Goods.name" %}</th><td>{{ object.good.name }}</td></tr>
+                <tr><th scope="col">{% translate "Needs.quantity" %}</th><td>{{ object.quantity }} {{ object.unit }}</td></tr>
+                <tr><th scope="col">{% translate "Needs.due_time" %}</th><td>{{ object.due_time }}</td></tr>
+                <tr><th scope="col">{% translate "Poi.name" %}</th><td>{{ object.poi.name }}</td></tr>
+                <tr><th scope="col">{% translate "Poi.description" %}</th><td>{{ object.poi.description }}</td></tr>
+                <tr><th scope="col">{% translate "Poi.contact" %}</th><td>{{ object.poi.contact }}</td></tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+
+{% endblock %}
