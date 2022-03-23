@@ -24,7 +24,7 @@
     {% for need in needs %}
         <tr>
           <td>{{ need.good.name }}</td>
-          <td>{{ need.quantity }} {{ need.unit }}</td>
+          <td>{{ need.get_quantity_display }} {{ need.get_unit_display }}</td>
           <td>{{ need.due_time }}</td>
           <td><a href="{% url 'poi-detail' need.poi.id %}" target="_blank">{{ need.poi.name }}</a></td>
           {% if user.is_authenticated %}

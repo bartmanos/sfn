@@ -18,10 +18,10 @@
     {% for shipment in object_list %}
         <tr>
           <td>{{ shipment.need.good.name }}</td>
-          <td>{{ shipment.need.quantity }} {{ shipment.need.unit }}</td>
+          <td>{{ shipment.need.get_quantity_display }} {{ shipment.need.get_unit_display }}</td>
           <td>{{ shipment.need.due_time }}</td>
           <td><a href="{% url 'poi-detail' shipment.need.poi.id %}" target="_blank">{{ shipment.need.poi.name }}</a></td>
-          <td>{{ shipment.status }}</td>
+          <td>{{ shipment.get_status_display }}</td>
           <td>{{ shipment.created_at }}</td>
           <td>{{ shipment.updated_at }}</td>
         </tr>

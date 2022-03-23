@@ -4,7 +4,7 @@
 {% block meta %}
     <meta property="og:url" content="{{ og_url }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ object.good.name }} {{ object.quantity }}{{  object.unit }} {%  translate "needed in" %} {{ object.poi.name }}" />
+    <meta property="og:title" content="{% blocktranslate with name=object.good.name quantity=object.get_quantity_display unit=object.get_unit_display poi=object.poi.name %}As a part of our aid to refugees, we need: {{ name }} {{ quantity }}{{ unit }} in: {{ poi }}{% endblocktranslate %}" />
 {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@
             <table class="table">
               <tbody>
                 <tr><th scope="col">{% translate "Goods.name" %}</th><td>{{ object.good.name }}</td></tr>
-                <tr><th scope="col">{% translate "Needs.quantity" %}</th><td>{{ object.quantity }} {{ object.unit }}</td></tr>
+                <tr><th scope="col">{% translate "Needs.quantity" %}</th><td>{{ object.get_quantity_display }} {{ object.get_unit_display }}</td></tr>
                 <tr><th scope="col">{% translate "Needs.due_time" %}</th><td>{{ object.due_time }}</td></tr>
                 <tr><th scope="col">{% translate "Poi.name" %}</th><td>{{ object.poi.name }}</td></tr>
                 <tr><th scope="col">{% translate "Poi.description" %}</th><td>{{ object.poi.description }}</td></tr>
