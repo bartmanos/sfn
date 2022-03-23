@@ -151,9 +151,12 @@ class Needs(BaseModel):
 
     def __str__(self):
         return (
-            f"{_(self. status)} > {self.good.name} - {self.quantity} {self.unit}"
-            f"- {_('Needs.due_time')}: {self.due_time}"
+            f"{self.good.name} - {self.quantity}{self.get_unit_display()} "
+            f"- {_('Needs.due_time')}: {self.due_time} ({_(self.get_status_display())})"
         )
+
+    def get_quantity_display(self):
+        return round(self.quantity, 0)
 
     def get_absolute_url(self):
         return reverse("need", kwargs={"pk": self.pk})

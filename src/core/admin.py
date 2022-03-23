@@ -300,7 +300,7 @@ class ShipmentsAdmin(BaseModelAdmin):
 
     @admin.display(description=_("Needs.quantity"))
     def need_quantity(self, obj):
-        return f"{obj.need.quantity} {obj.need.unit}"
+        return f"{obj.need.quantity}{obj.need.get_unit_display()}"
 
     @admin.display(description=_("Poi.name"))
     def poi_name(self, obj):
