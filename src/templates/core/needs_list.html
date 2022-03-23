@@ -17,7 +17,7 @@
           <th scope="col">{% translate "Needs.due_time" %}</th>
           <th scope="col">{% translate "Poi.name" %}</th>
           {% if user.is_authenticated %}<th scope="col">{% translate "Fulfill" %}</th>{% endif %}
-          {% if user.is_superuser %}<th scope="col"></th>{% endif %}
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -52,7 +52,7 @@
                 </form>
             </th>
           {% endif %}
-          {% if user.is_superuser %}<td>{% post_to_facebook need %}</td>{% endif %}
+          <td>{% post_to_facebook need %}</td>
         </tr>
     {% endfor %}
       </tbody>
