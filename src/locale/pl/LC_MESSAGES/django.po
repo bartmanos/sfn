@@ -302,7 +302,7 @@ msgstr "Zgadzam się"
 msgid ""
 "As a part of our aid to refugees, we need: %(name)s %(quantity)s%(unit)s in: "
 "%(poi)s"
-msgstr "W ramach pomocy dla uchodźców potrzebujemy: %(name)s %(quantity)s%(unit)s in: %(poi)s"
+msgstr "W ramach pomocy dla uchodźców potrzebujemy: %(name)s %(quantity)s%(unit)s w: %(poi)s"
 
 #: templates/core/needs_detail.html:26
 msgid "Share"
