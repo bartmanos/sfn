@@ -230,7 +230,7 @@ These files are stored in repository
 
 To see translations in running app you need run:
 
-    $ ./manage.py compilemessages -a
+    $ ./manage.py compilemessages
     processing file django.po in /home/user/sfn/src/locale/en/LC_MESSAGES
     processing file django.po in /home/user/sfn/src/locale/pl/LC_MESSAGES
     processing file django.po in /home/user/sfn/src/locale/ua/LC_MESSAGES
