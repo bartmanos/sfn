@@ -96,6 +96,9 @@ class Poi(BaseModel):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("poi-detail", kwargs={"pk": self.pk})
+
 
 class PoiMembership(BaseModel):
     member = models.ForeignKey(
