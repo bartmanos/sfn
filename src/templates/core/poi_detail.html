@@ -1,5 +1,17 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n social_share %}
+
+{% translate "Share on Facebook" as share_on_facebook %}
+
+{% block meta %}
+    <meta property="og:url" content="{{ og_url }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{% blocktranslate with name=object.name %}Our current needs in {{ object }}{% endblocktranslate %}" />
+    <meta property="og:image" content="https://sfn-project.org/poi/{{ object.id }}/potrzeby/img" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="650" />
+
+{% endblock %}
 
 {% block content %}
     <div class="row">
@@ -10,10 +22,60 @@
                 <tr><th scope="col">{% translate "Poi.name" %}</th><td>{{ object.name }}</td></tr>
                 <tr><th scope="col">{% translate "Poi.description" %}</th><td>{{ object.description }}</td></tr>
                 <tr><th scope="col">{% translate "Poi.contact" %}</th><td>{{ object.contact }}</td></tr>
+                <tr><th></th><td>{% post_to_facebook object share_on_facebook %}</td></tr>
               </tbody>
             </table>
         </div>
         <div class="col"></div>
+    </div>
+
+    <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{% translate "Goods.name" %}</th>
+          <th scope="col">{% translate "Needs.quantity" %}</th>
+          <th scope="col">{% translate "BaseModel.created_at" %}</th>
+          <th scope="col">{% translate "Poi.name" %}</th>
+          {% if user.is_authenticated %}<th scope="col">{% translate "Fulfill" %}</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+    {% for need in needs %}
+        <tr>
+          <td>{{ need.good.name }}</td>
+          <td>{{ need.get_quantity_display }} {{ need.get_unit_display }}</td>
+          <td>{{ need.created_at }}</td>
+          <td><a href="{% url 'poi-detail' need.poi.id %}" target="_blank">{{ need.poi.name }}</a></td>
+          {% if user.is_authenticated %}
+            <th scope="col">
+                <form action={% url 'needs' %}?need_id={{ need.id }} method="post">
+                    {% csrf_token %}
+                    <div class="modal fade" id="fullfull{{ need.id }}" tabindex="-1" aria-labelledby="fullfull{{ need.id }}" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="fullfull{{ need.id }}">{% translate "Fulfill" %}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            {% translate "By clicking fullfill you commit to provide this need. Are you sure?" %}
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{% translate "Close" %}</button>
+                            <input type="submit" value={% translate "Fulfill" %} class="btn btn-warning">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="btn bg-ua-rev" data-bs-toggle="modal" data-bs-target="#fullfull{{ need.id }}">{% translate "Fulfill" %}</button>
+                </form>
+            </th>
+          {% endif %}
+        </tr>
+    {% endfor %}
+      </tbody>
+    </table>
     </div>
 
 {% endblock %}

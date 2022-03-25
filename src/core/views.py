@@ -1,8 +1,11 @@
+import datetime
+
 from django.core.exceptions import ValidationError
-from django.http import HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
+from core.img import FbSharerImg
 from core.models import Needs, Poi, Shipments
 
 
@@ -45,6 +48,23 @@ class MyShipmentsView(ListView):
 class PoiView(DetailView):
     model = Poi
 
+    def get_context_data(self, **kwargs):
+        kwargs["needs"] = kwargs["object"].needs_set.filter(status=Needs.Status.ACTIVE)
+        return kwargs
+
 
 class NeedView(DetailView):
     model = Needs
+
+
+def poi_needs_fb_sharer_img(request, pk: int):
+    poi = Poi.objects.get(pk=pk)
+    needs = Needs.objects.filter(poi_id=pk, status=Needs.Status.ACTIVE)
+    text = f"{poi.name} {datetime.datetime.now().strftime('%Y-%m-%d %H:%M')} potrzebujemy:\n\n"
+    text += "\n".join(["- " + need.good.name for need in needs])
+    text += "\n"
+    fb = FbSharerImg()
+    img = fb.create(text)
+    response = HttpResponse(headers={"Content-Type": "image/png"})
+    img.save(response, "PNG")
+    return response
