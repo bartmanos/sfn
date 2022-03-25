@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load i18n social_share %}
 
-{% translate "Share on Facebook" as share_on_facebook %}
-
 {% block meta %}
     <meta property="og:url" content="{{ og_url }}" />
     <meta property="og:type" content="website" />
@@ -13,7 +11,9 @@
 
 {% endblock %}
 
+
 {% block content %}
+    {% translate "Share on Facebook" as share_on_facebook %}
     <div class="row">
         <div class="col"></div>
         <div class="col">
