@@ -14,7 +14,7 @@
         <tr>
           <th scope="col">{% translate "Goods.name" %}</th>
           <th scope="col">{% translate "Needs.quantity" %}</th>
-          <th scope="col">{% translate "Needs.due_time" %}</th>
+          <th scope="col">{% translate "BaseModel.created_at" %}</th>
           <th scope="col">{% translate "Poi.name" %}</th>
           {% if user.is_authenticated %}<th scope="col">{% translate "Fulfill" %}</th>{% endif %}
           <th scope="col"></th>
@@ -25,7 +25,7 @@
         <tr>
           <td>{{ need.good.name }}</td>
           <td>{{ need.get_quantity_display }} {{ need.get_unit_display }}</td>
-          <td>{{ need.due_time }}</td>
+          <td>{{ need.created_at }}</td>
           <td><a href="{% url 'poi-detail' need.poi.id %}" target="_blank">{{ need.poi.name }}</a></td>
           {% if user.is_authenticated %}
             <th scope="col">
@@ -52,7 +52,8 @@
                 </form>
             </th>
           {% endif %}
-          <td>{% post_to_facebook need %}</td>
+          {% translate "Share on Facebook" as share_on_facebook %}
+          <td>{% post_to_facebook need share_on_facebook %}</td>
         </tr>
     {% endfor %}
       </tbody>

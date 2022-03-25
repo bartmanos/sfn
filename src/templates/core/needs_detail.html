@@ -15,7 +15,7 @@
               <tbody>
                 <tr><th scope="col">{% translate "Goods.name" %}</th><td>{{ object.good.name }}</td></tr>
                 <tr><th scope="col">{% translate "Needs.quantity" %}</th><td>{{ object.get_quantity_display }} {{ object.get_unit_display }}</td></tr>
-                <tr><th scope="col">{% translate "Needs.due_time" %}</th><td>{{ object.due_time }}</td></tr>
+                <tr><th scope="col">{% translate "BaseModel.created_at" %}</th><td>{{ object.created_at }}</td></tr>
                 <tr><th scope="col">{% translate "Poi.name" %}</th><td>{{ object.poi.name }}</td></tr>
                 <tr><th scope="col">{% translate "Poi.description" %}</th><td>{{ object.poi.description }}</td></tr>
                 <tr><th scope="col">{% translate "Poi.contact" %}</th><td>{{ object.poi.contact }}</td></tr>
@@ -24,7 +24,8 @@
                     <th scope="col">
                         {%  translate "Share" %}
                     </th>
-                    <td>{% post_to_facebook need %}</td>
+                    {% translate "Share on Facebook" as share_on_facebook %}
+                    <td>{% post_to_facebook need share_on_facebook %}</td>
                 </tr>
                 {% if user.is_authenticated %}
                     <tr>

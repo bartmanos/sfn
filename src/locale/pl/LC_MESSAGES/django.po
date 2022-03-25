@@ -47,7 +47,7 @@ msgstr "Potrzebujący (POI)"
 
 #: core/models.py:13 templates/core/shipments_list.html:13
 msgid "BaseModel.created_at"
-msgstr "Data dodania"
+msgstr "Dodano"
 
 #: core/models.py:18
 msgid "BaseModel.created_by"
