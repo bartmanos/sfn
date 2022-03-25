@@ -2,13 +2,14 @@ import textwrap
 from string import ascii_letters
 from typing import Tuple
 
+from django.conf import settings
 from PIL import Image, ImageDraw, ImageFont
 
 
 class FbSharerImg:
     width = 1200
     height = 650
-    font = "Arial Unicode.ttf"
+    font: str = str(settings.FONT)
     max_font_size = 48
     min_font_size = 8
     vertical_spacing = 12

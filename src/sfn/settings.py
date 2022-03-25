@@ -231,3 +231,5 @@ SHIPMENTS_IN_PROGRESS_LIMIT = 20
 
 # Demo mode
 DEMO = False
+
+FONT = BASE_DIR / "fonts" / "Arial Unicode.ttf"
