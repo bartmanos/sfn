@@ -7,7 +7,7 @@
         <tr>
           <th scope="col">{% translate "Goods.name" %}</th>
           <th scope="col">{% translate "Needs.quantity" %}</th>
-          <th scope="col">{% translate "Needs.due_time" %}</th>
+          <th scope="col">{% translate "BaseModel.created_at" %}</th>
           <th scope="col">{% translate "Poi.name" %}</th>
           <th scope="col">{% translate "Shipments.status" %}</th>
           <th scope="col">{% translate "BaseModel.created_at" %}</th>
@@ -19,7 +19,7 @@
         <tr>
           <td>{{ shipment.need.good.name }}</td>
           <td>{{ shipment.need.get_quantity_display }} {{ shipment.need.get_unit_display }}</td>
-          <td>{{ shipment.need.due_time }}</td>
+          <td>{{ shipment.need.created_at }}</td>
           <td><a href="{% url 'poi-detail' shipment.need.poi.id %}" target="_blank">{{ shipment.need.poi.name }}</a></td>
           <td>{{ shipment.get_status_display }}</td>
           <td>{{ shipment.created_at }}</td>
