@@ -5,6 +5,9 @@
     <meta property="og:url" content="{{ og_url }}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{% blocktranslate with name=object.good.name quantity=object.get_quantity_display unit=object.get_unit_display poi=object.poi.name %}As a part of our aid to refugees, we need: {{ name }} {{ quantity }}{{ unit }} in: {{ poi }}{% endblocktranslate %}" />
+    <meta property="og:image" content="https://sfn-project.org/static/sfn.png?1" />
+    <meta property="og:image:width" content="1080" />
+    <meta property="og:image:height" content="1080" />
 {% endblock %}
 
 {% block content %}
