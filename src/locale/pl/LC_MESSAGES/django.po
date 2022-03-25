@@ -273,7 +273,7 @@ msgstr "Wersja demonstracyjna. Tylko do celów testowych."
 
 #: templates/base.html:103
 msgid "Terms and Conditions"
-msgstr "Zasady i Warunki"
+msgstr "O nas, zasady i warunki"
 
 #: templates/base.html:104
 msgid "Privacy policy"
